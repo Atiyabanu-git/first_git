@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hello Mudaser</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:Arial,sans-serif;background:#fff;color:#111;text-align:center;overflow-x:hidden}
+  header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:16px;
+    padding:18px 28px;
+    position:sticky;
+    top:0;
+    background:#fff;
+    z-index:100
+  }
+  .logo{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    font-size:28px;
+    font-weight:900;
+    text-align:left;
+    line-height:1;
+    text-decoration:none;
+    color:#111;
+    flex-shrink:0
+  }
+  .logo-mark{width:58px;height:58px;flex-shrink:0}
+  .logo-mark path{fill:none;stroke:#111;stroke-width:8;stroke-linecap:round;stroke-linejoin:round}
+  .top-nav{
+    display:flex;
+    align-items:center;
+    gap:22px;
+    flex-wrap:wrap;
+    justify-content:flex-end
+  }
+  .nav-link{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    text-decoration:none;
+    color:#2b2b2b;
+    font-size:15px;
+    font-weight:500;
+    padding:6px 4px;
+    transition:color .2s ease
+  }
+  .nav-link:hover{color:#000}
+  .nav-ico{
+    width:16px;
+    height:16px;
+    stroke:currentColor;
+    fill:none;
+    stroke-width:1.8;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+    flex-shrink:0
+  }
+  .icon-btn{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    border:none;
+    cursor:pointer;
+    background:#141416;
+    color:#fff;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+    transition:transform .15s ease, background .2s ease
+  }
+  .icon-btn:hover{background:#000;transform:scale(1.04)}
+  .resume-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:9px 15px;
+    border-radius:10px;
+    border:1px solid #e5e7eb;
+    background:#fff;
+    color:#111;
+    font-size:14px;
+    font-weight:600;
+    cursor:pointer;
+    transition:background .2s ease, border-color .2s ease
+  }
+  .resume-btn:hover{background:#f9fafb;border-color:#d1d5db}
+
+  .hero{padding:76px 24px 12px}
+  .hello-text{font-family:'Halvatica','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:22px;font-weight:700;letter-spacing:2.2px;color:#666;text-transform:uppercase}
+  .wave-hand{display:inline-block;transform-origin:70% 70%;appearance:none;border:0;background:transparent;color:inherit;font:inherit;letter-spacing:inherit;padding:0;cursor:pointer}
+  .hero h1{font-size:68px;margin:14px 0 24px;line-height:1.02}
+  .hero h1 b{font-weight:900}
+  .pill-wrap{display:flex;justify-content:center;align-items:center;gap:12px}
+  .circle{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer;user-select:none;transition:transform .18s ease}
+  .circle:active{transform:scale(.92)}
+  .blue{background:#dbeafe}.cream{background:#fef3c7}.purple{background:#ede9fe}
+  .pill-box{position:relative;display:inline-flex;align-items:center;justify-content:center}
+  .pill{background:#fef3c7;padding:15px 28px;border-radius:34px;font-size:21px;font-weight:bold;cursor:pointer;user-select:none;transition:.2s;box-shadow:0 2px 10px rgba(0,0,0,.08);max-width:min(520px,calc(100vw - 180px));text-align:center;line-height:1.2}
+  .pill:active{transform:scale(.95)}
+  .pill-tooltip{
+    position:absolute;
+    top:calc(100% + 10px);
+    left:50%;
+    transform:translateX(-50%) translateY(-4px);
+    background:#1b1d21;
+    color:#fff;
+    padding:7px 12px;
+    border-radius:6px;
+    font-size:13px;
+    font-weight:600;
+    white-space:nowrap;
+    box-shadow:0 6px 18px rgba(0,0,0,.18);
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .16s ease, transform .16s ease;
+    z-index:30;
+  }
+  .pill-box:hover .pill-tooltip{
+    opacity:1;
+    transform:translateX(-50%) translateY(0);
+  }
+  .sub{color:#777;font-size:18px;margin:28px auto 20px;line-height:1.5;max-width:520px;transition:opacity .2s ease}
+  .sub b{color:#111}
+  .meet{display:inline-block;background:#111;color:#fff;padding:18px 34px;border-radius:44px;text-decoration:none;font-size:20px;margin-top:8px;transition:.3s}
+  .meet:hover{transform:scale(1.05);background:#000}
+
+  /* Upper Half-Eyes Only + Sleep + Blink */
+  .eyes-wrap{
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    margin-top:46px;
+    position:relative;
+  }
+  .eyes{
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    gap:10px;
+    height:112px;
+    overflow:hidden;
+    position:relative;
+  }
+  .eye{
+    width:216px;
+    height:216px;
+    border:3px solid #111;
+    border-radius:50%;
+    background:#fff;
+    position:relative;
+    overflow:hidden;
+    cursor:pointer;
+    user-select:none;
+    flex-shrink:0;
+    transform:translateY(0);
+    transition:transform .16s ease;
+  }
+  .eye::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:#fff;
+    transform:scaleY(0);
+    transform-origin:top;
+    transition:transform .14s ease-in-out;
+    z-index:3;
+    pointer-events:none;
+  }
+  .eye.blinking::after{
+    transform:scaleY(1);
+  }
+  .eye.clicked-blink{
+    transform:scaleY(0.25);
+  }
+  .pupil{
+    width:112px;
+    height:112px;
+    background:#111;
+    border-radius:50%;
+    position:absolute;
+    top:42%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    transition:transform .08s ease-out, opacity .2s ease;
+    z-index:2;
+  }
+  .pupil::after{
+    content:'';
+    width:24px;
+    height:24px;
+    background:#fff;
+    border-radius:50%;
+    position:absolute;
+    top:19px;
+    left:19px;
+  }
+
+  /* Sleeping state when cursor is idle */
+  .eyes.sleeping .eye::after{
+    transform:scaleY(0.62);
+  }
+  .eyes.sleeping .pupil{
+    opacity:0.9;
+  }
+  .zzz{
+    position:absolute;
+    top:32px;
+    left:50%;
+    transform:translateX(-50%);
+    display:inline-flex;
+    align-items:baseline;
+    gap:3px;
+    color:#777;
+    font-weight:800;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .25s ease;
+    z-index:5;
+  }
+  .zzz .z-1{font-size:12px;line-height:1}
+  .zzz .z-2{font-size:17px;line-height:1}
+  .zzz .z-3{font-size:23px;line-height:1}
+  .eyes.sleeping .zzz{
+    opacity:1;
+    animation:floatZzz 2s ease-in-out infinite;
+  }
+  @keyframes floatZzz{
+    0%,100%{transform:translate(-50%, 0)}
+    50%{transform:translate(-50%, -6px)}
+  }
+
+  /* Portfolio sections */
+  .section-card{
+    max-width:720px;
+    margin:48px auto;
+    padding:28px 24px;
+    border:1px solid #ececec;
+    border-radius:24px;
+    text-align:left;
+    background:#fafafa;
+    scroll-margin-top:96px
+  }
+  .section-card h2{font-size:24px;margin-bottom:10px}
+  .section-card p{color:#555;line-height:1.6}
+
+  .overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;z-index:150}
+  .overlay.show{display:block}
+  .search-box{position:fixed;top:0;left:0;right:0;background:#fff;padding:20px;box-shadow:0 5px 20px rgba(0,0,0,.15);transform:translateY(-100%);transition:.4s;z-index:200;display:flex;gap:10px}
+  .search-box.open{transform:translateY(0)}
+  .search-box input{flex:1;padding:14px;border-radius:30px;border:1px solid #ddd;font-size:16px;outline:none}
+  .search-box button{padding:12px 20px;border-radius:30px;border:none;background:#111;color:#fff;cursor:pointer}
+  .result{padding:14px 20px;text-align:left;max-width:500px;margin:auto;font-size:16px}
+
+  /* Resume Viewer & Upload Sheet */
+  .resume-modal{
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    width:min(94vw, 860px);
+    max-height:88vh;
+    overflow-y:auto;
+    background:#f4f5f7;
+    color:#111;
+    border-radius:16px;
+    box-shadow:0 24px 60px rgba(0,0,0,.24);
+    z-index:220;
+    text-align:left;
+    display:none
+  }
+  .resume-modal.open{display:block}
+  .resume-topbar{
+    position:sticky;
+    top:0;
+    background:#fff;
+    border-bottom:1px solid #e5e7eb;
+    padding:14px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+    z-index:5
+  }
+  .resume-title-wrap{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:#222}
+  .live-dot{width:8px;height:8px;border-radius:50%;background:#16a34a;flex-shrink:0}
+  .resume-toolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .tool-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding:7px 12px;
+    border-radius:8px;
+    border:1px solid #e5e7eb;
+    background:#fff;
+    color:#111;
+    font-size:13px;
+    font-weight:600;
+    cursor:pointer;
+    text-decoration:none
+  }
+  .tool-btn:hover{background:#f9fafb}
+  .tool-btn.dark{background:#111;color:#fff;border-color:#111}
+  .tool-btn.dark:hover{background:#000}
+  .resume-body{padding:24px}
+
+  .resume-sheet{
+    background:#fff;
+    border:1px solid #e5e7eb;
+    border-radius:10px;
+    padding:36px 40px;
+    box-shadow:0 4px 18px rgba(0,0,0,.04)
+  }
+  .cv-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:20px;
+    padding-bottom:20px;
+    border-bottom:1px solid #e5e7eb;
+    flex-wrap:wrap
+  }
+  .cv-name{font-size:30px;font-weight:900;letter-spacing:.5px;color:#111}
+  .cv-role{font-size:13px;color:#666;margin-top:6px}
+  .cv-contact{font-size:12px;color:#444;line-height:1.7;text-align:right}
+  .cv-section{margin-top:22px}
+  .cv-section h4{
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:1.2px;
+    text-transform:uppercase;
+    color:#111;
+    margin-bottom:8px
+  }
+  .cv-section p,.cv-section li{font-size:14px;color:#374151;line-height:1.65}
+  .cv-section ul{padding-left:18px;margin-top:6px}
+  .cv-row{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:4px}
+  .cv-row strong{font-size:15px;color:#111}
+  .cv-row span{font-size:13px;color:#6b7280}
+  .uploaded-embed{
+    width:100%;
+    height:520px;
+    border:1px solid #e5e7eb;
+    border-radius:10px;
+    background:#fff;
+    display:none
+  }
+
+  .chat{position:fixed;bottom:20px;right:20px;width:56px;height:56px;border-radius:50%;background:#111;color:#fff;border:none;font-size:22px;cursor:pointer;z-index:90}
+
+  @media (max-width:768px){
+    header{padding:14px 16px}
+    .top-nav{gap:10px}
+    .nav-link{font-size:13px;gap:5px}
+    .resume-btn{padding:8px 12px;font-size:13px}
+    .resume-sheet{padding:22px 18px}
+    .cv-contact{text-align:left}
+    .hero h1{font-size:52px}
+    .sub{font-size:16px}
+    .pill{font-size:18px;padding:13px 24px}
+    .eye{width:176px;height:176px}
+    .pupil{width:92px;height:92px}
+    .eyes{height:92px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="#" class="logo" aria-label="Mudaser Logo">
+    <svg class="logo-mark" viewBox="0 0 120 120" role="img" aria-hidden="true">
+      <path d="M 34 74 C 31 61, 43 55, 48 66 C 47 36, 72 24, 82 52 C 88 70, 91 84, 98 96" />
+    </svg>
+    <span>Mudaser</span>
+  </a>
+  <nav class="top-nav" aria-label="Primary Navigation">
+    <a class="nav-link" href="#experience">
+      <svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+        <rect x="3" y="7" width="18" height="13" rx="2"/>
+        <path d="M3 12h18"/>
+      </svg>
+      <span>Experience</span>
+    </a>
+    <a class="nav-link" href="#projects">
+      <svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 3 2 8l10 5 10-5-10-5Z"/>
+        <path d="m2 13 10 5 10-5"/>
+        <path d="m2 18 10 5 10-5"/>
+      </svg>
+      <span>Projects</span>
+    </a>
+    <a class="nav-link" href="#beyond-work">
+      <svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 21s-7-4.4-9.5-9A5.4 5.4 0 0 1 12 6.2 5.4 5.4 0 0 1 21.5 12c-2.5 4.6-9.5 9-9.5 9Z"/>
+      </svg>
+      <span>Beyond Work</span>
+    </a>
+    <button class="icon-btn" onclick="openSearch()" aria-label="Search">
+      <svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="11" cy="11" r="7"/>
+        <path d="m20 20-3.5-3.5"/>
+      </svg>
+    </button>
+    <button class="resume-btn" onclick="openResumeModal()">
+      <svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z"/>
+        <path d="M14 3v5h5"/>
+        <path d="M9 13h6"/>
+        <path d="M9 17h4"/>
+      </svg>
+      <span>Resume</span>
+    </button>
+  </nav>
+</header>
+
+<div class="search-box" id="searchBox">
+  <input id="searchInput" placeholder="Search skills, experience, projects, resume..." oninput="doSearch(this.value)">
+  <button onclick="closeSearch()">✕</button>
+</div>
+<div class="result" id="searchResult"></div>
+
+<div class="overlay" id="overlay" onclick="closeAllModals()"></div>
+
+<div class="resume-modal" id="resumeModal" role="dialog" aria-modal="true" aria-labelledby="resumeHeaderLabel">
+  <div class="resume-topbar">
+    <div class="resume-title-wrap">
+      <span class="live-dot"></span>
+      <span id="resumeHeaderLabel">Mudaser — Resume</span>
+    </div>
+    <div class="resume-toolbar">
+      <button class="tool-btn" onclick="document.getElementById('resumeInput').click()">
+        <svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 16V4"/>
+          <path d="m7 9 5-5 5 5"/>
+          <path d="M4 20h16"/>
+        </svg>
+        <span>Upload</span>
+      </button>
+      <a class="tool-btn dark" id="downloadResumeBtn" download="Mudaser-Resume.txt">
+        <svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 4v12"/>
+          <path d="m7 11 5 5 5-5"/>
+          <path d="M4 20h16"/>
+        </svg>
+        <span>Download</span>
+      </a>
+      <button class="tool-btn" id="resetResumeBtn" style="display:none" onclick="resetToDefaultResume()">Default</button>
+      <button class="tool-btn" onclick="closeResumeModal()" aria-label="Close Resume">✕</button>
+    </div>
+  </div>
+  <input type="file" id="resumeInput" accept=".pdf,.doc,.docx,.txt,application/pdf,text/plain" hidden>
+
+  <div class="resume-body">
+    <div class="resume-sheet" id="defaultResumeSheet">
+      <div class="cv-header">
+        <div>
+          <div class="cv-name">MUDASER</div>
+          <div class="cv-role">Global Mobility &amp; Relocation Cost Modeling | Marketing Analytics &amp; Content Strategy | Event Operations &amp; Client Coordination | Operations, Analytics &amp; Execution Generalist | Financial Reporting &amp; BI Analytics</div>
+        </div>
+        <div class="cv-contact">
+          <div>mudaser@example.com</div>
+          <div>Bengaluru, India | Open to Remote &amp; Hybrid</div>
+        </div>
+      </div>
+
+      <div class="cv-section">
+        <h4>Professional Summary</h4>
+        <p>Creative writer, developer, and visual storyteller focused on clear messaging, responsive interfaces, and thoughtful digital experiences that connect with readers.</p>
+      </div>
+
+      <div class="cv-section">
+        <h4>Experience</h4>
+        <div class="cv-row">
+          <strong>Content &amp; Web Creator</strong>
+          <span>2024 – Present</span>
+        </div>
+        <ul>
+          <li>Write structured articles, landing copy, and stories that keep audiences engaged.</li>
+          <li>Build clean, fast, interactive web pages using HTML, CSS, and JavaScript.</li>
+        </ul>
+      </div>
+
+      <div class="cv-section">
+        <h4>Selected Projects</h4>
+        <ul>
+          <li><strong>Interactive Portfolio &amp; Role Switcher</strong> — Dynamic skill and tagline switcher with custom eye interactions.</li>
+          <li><strong>Editorial &amp; Story Notes</strong> — Clear breakdowns of design, writing, and everyday builds.</li>
+        </ul>
+      </div>
+    </div>
+
+    <iframe class="uploaded-embed" id="uploadedPdfFrame" title="Uploaded Resume Preview"></iframe>
+    <div class="resume-sheet" id="uploadedTextSheet" style="display:none">
+      <div class="cv-section" style="margin-top:0">
+        <h4 id="uploadedFileNameHeading">Uploaded Resume</h4>
+        <pre id="uploadedTextContent" style="white-space:pre-wrap;font-family:inherit;font-size:14px;color:#374151;line-height:1.65"></pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="hello-text"><button type="button" class="wave-hand" id="helloHand" aria-label="Wave hello">👋</button> HELLO!</div>
+  <h1>I'm <b>Mudaser</b></h1>
+  <div class="pill-wrap">
+    <div class="circle blue" id="leftCircle" onclick="prevSkill(true)">💼</div>
+    <div class="pill-box">
+      <div class="pill" id="skillPill" onclick="nextSkill(true)">📊 Global Mobility &amp; Relocation Cost Modeling</div>
+      <div class="pill-tooltip" id="pillTooltip">Global Mobility &amp; Relocation Cost Modeling (Click to switch)</div>
+    </div>
+    <div class="circle purple" id="rightCircle" onclick="nextSkill(true)">📑</div>
+  </div>
+  <p class="sub" id="subText">Policy- and tax-driven relocation estimates (TEQ &amp; COC via AirInc and Mercer) that cut revision turnaround by <b>20%</b>.</p>
+  <a class="meet" href="https://calendly.com/mudaser" target="_blank">📅 Book a Free Meeting</a>
+</section>
+
+<div class="eyes-wrap">
+  <span class="zzz" id="zzzLabel" aria-hidden="true"><span class="z-1">z</span><span class="z-2">z</span><span class="z-3">Z</span></span>
+  <div class="eyes" id="eyesContainer">
+    <div class="eye" id="eye1" onclick="blinkSingleEye(this)"><div class="pupil" id="p1"></div></div>
+    <div class="eye" id="eye2" onclick="blinkSingleEye(this)"><div class="pupil" id="p2"></div></div>
+  </div>
+</div>
+
+<section class="section-card" id="experience">
+  <h2>💼 Experience</h2>
+  <p>Add your roles, internships, and freelance highlights here.</p>
+</section>
+
+<section class="section-card" id="projects">
+  <h2>🗂️ Projects</h2>
+  <p>Showcase your favourite builds, writing samples, and design work here.</p>
+</section>
+
+<section class="section-card" id="beyond-work">
+  <h2>🤍 Beyond Work</h2>
+  <p>Share what you enjoy outside work—reading, side experiments, or community notes.</p>
+</section>
+
+<button class="chat" onclick="alert('Hi! This is Mudaser 💬')">💬</button>
+
+<script>
+const roleItems = [
+  { skill: "📊 Global Mobility & Relocation Cost Modeling", label: "Global Mobility & Relocation Cost Modeling", leftIcon: "💼", rightIcon: "📑", sub: "Policy- and tax-driven relocation estimates (TEQ & COC via AirInc and Mercer) that cut revision turnaround by <b>20%</b>." },
+  { skill: "📈 Marketing Analytics & Content Strategy", label: "Marketing Analytics & Content Strategy", leftIcon: "🎯", rightIcon: "✍️", sub: "Pairing campaign metrics and structured data with sharp copy to drive <b>measurable audience growth</b>." },
+  { skill: "🎪 Event Operations & Client Coordination", label: "Event Operations & Client Coordination", leftIcon: "📋", rightIcon: "🤝", sub: "Tight trackers, confirmed bookings, and <b>calm execution</b> when the clock is ticking on-ground." },
+  { skill: "⚙️ Operations, Analytics & Execution Generalist", label: "Operations, Analytics & Execution Generalist", leftIcon: "🔄", rightIcon: "✅", sub: "Structured spreadsheets by day, live logistics and rollout whenever <b>systems need to move</b>." },
+  { skill: "📊 Financial Reporting & BI Analytics", label: "Financial Reporting & BI Analytics", leftIcon: "📉", rightIcon: "🖥️", sub: "Automated Excel and Power BI dashboards that cut stakeholder prep time by <b>30%</b> and turn raw variance into clear calls." }
+];
+
+const skills = roleItems.map(item => item.skill);
+let si = 0;
+let autoRotateTimer;
+const AUTO_ROTATE_MS = 5000;
+
+const skillPillEl = document.getElementById('skillPill');
+const pillTooltipEl = document.getElementById('pillTooltip');
+const subTextEl = document.getElementById('subText');
+const leftCircleEl = document.getElementById('leftCircle');
+const rightCircleEl = document.getElementById('rightCircle');
+
+function renderRole(animatePill = false){
+  const current = roleItems[si];
+  skillPillEl.textContent = current.skill;
+  pillTooltipEl.textContent = `${current.label} (Click to switch)`;
+  subTextEl.innerHTML = current.sub;
+  leftCircleEl.textContent = current.leftIcon;
+  rightCircleEl.textContent = current.rightIcon;
+
+  if(animatePill){
+    skillPillEl.style.transform = 'scale(1.1)';
+    leftCircleEl.style.transform = 'scale(1.12)';
+    rightCircleEl.style.transform = 'scale(1.12)';
+    setTimeout(() => {
+      skillPillEl.style.transform = 'scale(1)';
+      leftCircleEl.style.transform = 'scale(1)';
+      rightCircleEl.style.transform = 'scale(1)';
+    }, 150);
+  }
+}
+
+function resetAutoRotate(){
+  clearInterval(autoRotateTimer);
+  autoRotateTimer = setInterval(() => {
+    si = (si + 1) % roleItems.length;
+    renderRole(true);
+  }, AUTO_ROTATE_MS);
+}
+
+function nextSkill(userTriggered = false){
+  si = (si + 1) % roleItems.length;
+  renderRole(true);
+  if(userTriggered) resetAutoRotate();
+}
+
+function prevSkill(userTriggered = false){
+  si = (si - 1 + roleItems.length) % roleItems.length;
+  renderRole(true);
+  if(userTriggered) resetAutoRotate();
+}
+
+renderRole(false);
+resetAutoRotate();
+
+const helloHandEl = document.getElementById('helloHand');
+const helloWaveFrames = [
+  { transform: 'rotate(0deg)' },
+  { transform: 'rotate(14deg)', offset: 0.2 },
+  { transform: 'rotate(-8deg)', offset: 0.4 },
+  { transform: 'rotate(14deg)', offset: 0.6 },
+  { transform: 'rotate(-8deg)', offset: 0.8 },
+  { transform: 'rotate(0deg)' }
+];
+
+function waveHelloHand(){
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  helloHandEl.animate(helloWaveFrames, { duration: 900, easing: 'ease-in-out' });
+}
+
+helloHandEl.addEventListener('click', waveHelloHand);
+setInterval(waveHelloHand, 5000);
+
+const eyesContainer = document.getElementById('eyesContainer');
+const zzzLabel = document.getElementById('zzzLabel');
+const allEyes = document.querySelectorAll('.eye');
+const p1 = document.getElementById('p1');
+const p2 = document.getElementById('p2');
+
+let sleepTimer;
+const SLEEP_DELAY_MS = 3500;
+
+function syncSleepZzz(){
+  const isSleeping = eyesContainer.classList.contains('sleeping');
+  zzzLabel.style.opacity = isSleeping ? '1' : '0';
+  zzzLabel.style.animation = isSleeping ? 'floatZzz 2s ease-in-out infinite' : 'none';
+}
+
+function wakeUpEyes(){
+  eyesContainer.classList.remove('sleeping');
+  syncSleepZzz();
+  clearTimeout(sleepTimer);
+  sleepTimer = setTimeout(() => {
+    eyesContainer.classList.add('sleeping');
+    syncSleepZzz();
+  }, SLEEP_DELAY_MS);
+}
+
+function moveEyes(x, y){
+  wakeUpEyes();
+  allEyes.forEach((eye, i)=>{
+    const r = eye.getBoundingClientRect();
+    const cx = r.left + r.width/2;
+    const cy = r.top + r.height/2;
+    let dx = x - cx, dy = y - cy;
+    let dist = Math.sqrt(dx*dx + dy*dy);
+    let max = 32;
+    if(dist > max){ dx = dx/dist*max; dy = dy/dist*max; }
+    const pupil = i===0 ? p1 : p2;
+    pupil.style.transform = `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px))`;
+  });
+}
+
+function blinkBothEyes(){
+  allEyes.forEach(eye => eye.classList.add('blinking'));
+  setTimeout(() => {
+    allEyes.forEach(eye => eye.classList.remove('blinking'));
+  }, 160);
+}
+
+function blinkSingleEye(eyeEl){
+  wakeUpEyes();
+  eyeEl.classList.remove('clicked-blink');
+  void eyeEl.offsetWidth;
+  eyeEl.classList.add('clicked-blink');
+  setTimeout(() => {
+    eyeEl.classList.remove('clicked-blink');
+  }, 180);
+}
+
+document.addEventListener('mousemove', e => moveEyes(e.clientX, e.clientY));
+document.addEventListener('touchmove', e => {
+  if(e.touches && e.touches[0]) moveEyes(e.touches[0].clientX, e.touches[0].clientY);
+});
+
+setInterval(blinkBothEyes, 10000);
+wakeUpEyes();
+
+function openSearch(){
+  closeResumeModal(false);
+  document.getElementById('overlay').classList.add('show');
+  document.getElementById('searchBox').classList.add('open');
+  document.getElementById('searchInput').focus();
+}
+function closeSearch(){
+  document.getElementById('searchBox').classList.remove('open');
+  document.getElementById('searchResult').innerHTML='';
+  if(!document.getElementById('resumeModal').classList.contains('open')){
+    document.getElementById('overlay').classList.remove('show');
+  }
+}
+function doSearch(q){
+  q = q.toLowerCase();
+  if(!q){ document.getElementById('searchResult').innerHTML=''; return; }
+  const all = [...skills, "Experience", "Projects", "Beyond Work", "Resume", "Book a Meeting"];
+  const found = all.filter(x => x.toLowerCase().includes(q));
+  document.getElementById('searchResult').innerHTML = found.length
+    ? "Found: <br>• " + found.join("<br>• ")
+    : "No results for '"+q+"'";
+}
+
+/* Resume viewer, upload & download */
+const resumeModal = document.getElementById('resumeModal');
+const resumeInput = document.getElementById('resumeInput');
+const resumeHeaderLabel = document.getElementById('resumeHeaderLabel');
+const downloadResumeBtn = document.getElementById('downloadResumeBtn');
+const resetResumeBtn = document.getElementById('resetResumeBtn');
+const defaultResumeSheet = document.getElementById('defaultResumeSheet');
+const uploadedPdfFrame = document.getElementById('uploadedPdfFrame');
+const uploadedTextSheet = document.getElementById('uploadedTextSheet');
+const uploadedFileNameHeading = document.getElementById('uploadedFileNameHeading');
+const uploadedTextContent = document.getElementById('uploadedTextContent');
+
+let uploadedObjectUrl = null;
+const defaultResumeText = [
+  "MUDASER",
+  "Global Mobility & Relocation Cost Modeling | Marketing Analytics & Content Strategy | Event Operations & Client Coordination | Operations, Analytics & Execution Generalist | Financial Reporting & BI Analytics",
+  "Email: mudaser@example.com | Bengaluru, India",
+  "",
+  "PROFESSIONAL SUMMARY",
+  "Creative writer, developer, and visual storyteller focused on clear messaging, responsive interfaces, and thoughtful digital experiences.",
+  "",
+  "EXPERIENCE",
+  "Content & Web Creator (2024 - Present)",
+  "- Write structured articles, landing copy, and stories that keep audiences engaged.",
+  "- Build clean, fast, interactive web pages using HTML, CSS, and JavaScript.",
+  "",
+  "PROJECTS",
+  "- Interactive Portfolio & Role Switcher",
+  "- Editorial & Story Notes"
+].join("\n");
+
+const fallbackBlobUrl = URL.createObjectURL(new Blob([defaultResumeText], { type: "text/plain;charset=utf-8" }));
+downloadResumeBtn.href = fallbackBlobUrl;
+
+function openResumeModal(){
+  closeSearch();
+  document.getElementById('overlay').classList.add('show');
+  resumeModal.classList.add('open');
+}
+function closeResumeModal(hideOverlay = true){
+  resumeModal.classList.remove('open');
+  if(hideOverlay) document.getElementById('overlay').classList.remove('show');
+}
+function closeAllModals(){
+  closeResumeModal(false);
+  document.getElementById('searchBox').classList.remove('open');
+  document.getElementById('searchResult').innerHTML='';
+  document.getElementById('overlay').classList.remove('show');
+}
+
+function resetToDefaultResume(){
+  if(uploadedObjectUrl){
+    URL.revokeObjectURL(uploadedObjectUrl);
+    uploadedObjectUrl = null;
+  }
+  resumeInput.value = "";
+  resumeHeaderLabel.textContent = "Mudaser — Resume";
+  downloadResumeBtn.href = fallbackBlobUrl;
+  downloadResumeBtn.download = "Mudaser-Resume.txt";
+  resetResumeBtn.style.display = "none";
+  uploadedPdfFrame.style.display = "none";
+  uploadedPdfFrame.removeAttribute("src");
+  uploadedTextSheet.style.display = "none";
+  defaultResumeSheet.style.display = "block";
+}
+
+resumeInput.addEventListener('change', e => {
+  const file = e.target.files && e.target.files[0];
+  if(!file) return;
+
+  if(uploadedObjectUrl) URL.revokeObjectURL(uploadedObjectUrl);
+  uploadedObjectUrl = URL.createObjectURL(file);
+
+  resumeHeaderLabel.textContent = `Mudaser — Resume (${file.name})`;
+  downloadResumeBtn.href = uploadedObjectUrl;
+  downloadResumeBtn.download = file.name;
+  resetResumeBtn.style.display = "inline-flex";
+  defaultResumeSheet.style.display = "none";
+
+  const lower = file.name.toLowerCase();
+  if(file.type === "application/pdf" || lower.endsWith(".pdf")){
+    uploadedTextSheet.style.display = "none";
+    uploadedPdfFrame.src = uploadedObjectUrl;
+    uploadedPdfFrame.style.display = "block";
+  } else if(file.type.startsWith("text/") || lower.endsWith(".txt")){
+    uploadedPdfFrame.style.display = "none";
+    uploadedPdfFrame.removeAttribute("src");
+    uploadedFileNameHeading.textContent = file.name;
+    file.text().then(txt => {
+      uploadedTextContent.textContent = txt;
+      uploadedTextSheet.style.display = "block";
+    });
+  } else {
+    uploadedPdfFrame.style.display = "none";
+    uploadedPdfFrame.removeAttribute("src");
+    uploadedFileNameHeading.textContent = file.name;
+    uploadedTextContent.textContent = `Uploaded "${file.name}" (${(file.size / 1024).toFixed(1)} KB). Use the Download button above to save or open the file.`;
+    uploadedTextSheet.style.display = "block";
+  }
+});
+</script>
+</body>
+</html>
