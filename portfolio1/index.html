@@ -265,7 +265,7 @@
   .search-box button{padding:12px 20px;border-radius:30px;border:none;background:#111;color:#fff;cursor:pointer}
   .result{padding:14px 20px;text-align:left;max-width:500px;margin:auto;font-size:16px}
 
-  /* Resume Viewer & Upload Sheet */
+  /* Resume Viewer */
   .resume-modal{
     position:fixed;
     top:50%;
@@ -317,7 +317,6 @@
   .tool-btn.dark{background:#111;color:#fff;border-color:#111}
   .tool-btn.dark:hover{background:#000}
   .resume-body{padding:24px}
-
   .resume-sheet{
     background:#fff;
     border:1px solid #e5e7eb;
@@ -338,6 +337,7 @@
   .cv-role{font-size:13px;color:#666;margin-top:6px}
   .cv-contact{font-size:12px;color:#444;line-height:1.7;text-align:right}
   .cv-section{margin-top:22px}
+  .cv-section p + p{margin-top:8px}
   .cv-section h4{
     font-size:12px;
     font-weight:800;
@@ -351,15 +351,6 @@
   .cv-row{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:4px}
   .cv-row strong{font-size:15px;color:#111}
   .cv-row span{font-size:13px;color:#6b7280}
-  .uploaded-embed{
-    width:100%;
-    height:520px;
-    border:1px solid #e5e7eb;
-    border-radius:10px;
-    background:#fff;
-    display:none
-  }
-
   .chat{position:fixed;bottom:20px;right:20px;width:56px;height:56px;border-radius:50%;background:#111;color:#fff;border:none;font-size:22px;cursor:pointer;z-index:90}
 
   @media (max-width:768px){
@@ -440,18 +431,10 @@
   <div class="resume-topbar">
     <div class="resume-title-wrap">
       <span class="live-dot"></span>
-      <span id="resumeHeaderLabel">Mudaser — Resume</span>
+      <span id="resumeHeaderLabel">Mohammed Mudaser — Resume</span>
     </div>
     <div class="resume-toolbar">
-      <button class="tool-btn" onclick="document.getElementById('resumeInput').click()">
-        <svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M12 16V4"/>
-          <path d="m7 9 5-5 5 5"/>
-          <path d="M4 20h16"/>
-        </svg>
-        <span>Upload</span>
-      </button>
-      <a class="tool-btn dark" id="downloadResumeBtn" download="Mudaser-Resume.txt">
+      <a class="tool-btn dark" href="assets/Mohammed%20Mudaser%20-%20Resume.pdf" download="Mohammed-Mudaser-Resume.pdf" type="application/pdf">
         <svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true">
           <path d="M12 4v12"/>
           <path d="m7 11 5 5 5-5"/>
@@ -459,58 +442,100 @@
         </svg>
         <span>Download</span>
       </a>
-      <button class="tool-btn" id="resetResumeBtn" style="display:none" onclick="resetToDefaultResume()">Default</button>
       <button class="tool-btn" onclick="closeResumeModal()" aria-label="Close Resume">✕</button>
     </div>
   </div>
-  <input type="file" id="resumeInput" accept=".pdf,.doc,.docx,.txt,application/pdf,text/plain" hidden>
 
   <div class="resume-body">
-    <div class="resume-sheet" id="defaultResumeSheet">
+    <div class="resume-sheet">
       <div class="cv-header">
         <div>
-          <div class="cv-name">MUDASER</div>
-          <div class="cv-role">Global Mobility &amp; Relocation Cost Modeling | Marketing Analytics &amp; Content Strategy | Event Operations &amp; Client Coordination | Operations, Analytics &amp; Execution Generalist | Financial Reporting &amp; BI Analytics</div>
+          <div class="cv-name">Mohammed Mudaser</div>
+          <div class="cv-role">Global Mobility Cost Modeling | Reporting &amp; BI Analytics | Marketing &amp; Event Operations</div>
         </div>
         <div class="cv-contact">
-          <div>mudaser@example.com</div>
-          <div>Bengaluru, India | Open to Remote &amp; Hybrid</div>
+          <div>Bengaluru, Karnataka, India</div>
+          <div>+91 7975771675</div>
+          <div>mudaserinfo21@gmail.com</div>
+          <div>linkedin.com/in/mdmudaser</div>
         </div>
       </div>
 
       <div class="cv-section">
         <h4>Professional Summary</h4>
-        <p>Creative writer, developer, and visual storyteller focused on clear messaging, responsive interfaces, and thoughtful digital experiences that connect with readers.</p>
+        <p>BBA-trained operations, analytics, and execution generalist experienced in policy- and tax-driven international relocation cost modeling across 10+ enterprise accounts, automated Excel and Power BI reporting, multi-platform marketing analytics, and live event coordination. Proven track record of 100% SLA compliance with 0% error rate, 20% faster estimate turnaround, 30% faster reporting preparation, and 40% brand engagement growth.</p>
+      </div>
+
+      <div class="cv-section">
+        <h4>Core Competencies</h4>
+        <p><strong>Global Mobility &amp; Finance:</strong> TEQ &amp; COC Cost Modeling, AirInc, Mercer, Tax &amp; Relocation Policy Compliance, Reconciliation, Variance Analysis, Forecasting &amp; Budget Management, SLA Compliance</p>
+        <p><strong>Data &amp; BI Analytics:</strong> MS Excel (Pivot Tables, VLOOKUP, Conditional Formatting, Automated Dashboards), Power BI, Google Analytics, SQL (Learning), Data Cleaning &amp; Visualization, Reporting Automation</p>
+        <p><strong>Marketing &amp; Content Strategy:</strong> Multi-Platform Campaign Execution, Short-Form Video &amp; Web Stories, Influencer Partnerships, Audience Targeting, Performance Analytics &amp; Content Optimization</p>
+        <p><strong>Operations &amp; Event Execution:</strong> End-to-End Event Coordination, Vendor &amp; Host Outreach, Google Sheets Trackers, Cross-Timezone Stakeholder Management, Process Standardization &amp; Asynchronous Execution</p>
       </div>
 
       <div class="cv-section">
         <h4>Experience</h4>
         <div class="cv-row">
-          <strong>Content &amp; Web Creator</strong>
-          <span>2024 – Present</span>
+          <strong>Compensation Support Coordinator (Contract) | Sirva (Remote)</strong>
+          <span>Dec 2025 – Jun 2026</span>
         </div>
         <ul>
-          <li>Write structured articles, landing copy, and stories that keep audiences engaged.</li>
-          <li>Build clean, fast, interactive web pages using HTML, CSS, and JavaScript.</li>
+          <li>Prepared international assignment and relocation cost estimates (TEQ &amp; COC) across 10+ enterprise client accounts using AirInc and Mercer platforms, improving first-pass accuracy and reducing revision turnaround time (TAT) by ~20% with 100% SLA compliance and 0% error rate.</li>
+          <li>Calculated tax implications and compensation components (airfare, housing, allowances, family size, and assignment terms) from assignee records in full compliance with each client's relocation and tax policies.</li>
+          <li>Designed automated Excel financial reporting dashboards (Pivot Tables, VLOOKUP, Conditional Formatting) to track KPIs and conduct variance analysis across 10+ portfolios, cutting stakeholder reporting preparation time by 30%.</li>
+          <li>Standardized error-checking workflows across TEQ and COC deliverables and resolved 100% of client compensation queries independently across cross-timezone environments with zero escalations.</li>
+        </ul>
+
+        <div class="cv-row">
+          <strong>Freelance Event Coordinator | Independent (Bengaluru)</strong>
+          <span>Jun 2025 – Present</span>
+        </div>
+        <ul>
+          <li>Manage end-to-end event operations, live schedules, vendor and host outreach, and budget tracking using structured Google Sheets trackers for calm, on-schedule on-ground execution.</li>
+          <li>Coordinate cross-functional logistics and stakeholder communications before and during live events to eliminate bottlenecks and keep timelines on track.</li>
+        </ul>
+
+        <div class="cv-row">
+          <strong>Marketing &amp; Social Media Intern | HomeTriangle (Bengaluru)</strong>
+          <span>Jan 2025 – Mar 2025</span>
+        </div>
+        <ul>
+          <li>Designed and executed multi-platform campaigns across short-form video, web stories, and influencer partnerships, driving a 40% brand engagement lift within 90 days through weekly performance reviews.</li>
+          <li>Tracked campaign analytics continuously and coordinated cross-functional planning sessions to align deliverables and ensure 100% on-schedule execution across active channels.</li>
+        </ul>
+
+        <div class="cv-row">
+          <strong>Data Analyst Intern (Virtual Simulation) | Accenture (Remote)</strong>
+          <span>Jul 2024</span>
+        </div>
+        <ul>
+          <li>Conducted financial and behavioral analysis across 7 structured social media datasets—cleaning data and identifying trends that drove a 20% uplift in strategic decision-making accuracy.</li>
+          <li>Owned the end-to-end analytics lifecycle from scope definition to stakeholder-ready PowerPoint reporting and executive recommendations.</li>
         </ul>
       </div>
 
       <div class="cv-section">
-        <h4>Selected Projects</h4>
+        <h4>Education &amp; Leadership</h4>
+        <div class="cv-row">
+          <strong>Bachelor of Business Administration (Marketing &amp; Finance)</strong>
+          <span>2022 – 2025</span>
+        </div>
+        <p>Indian Academy Degree College, Autonomous | CGPA: 7.89</p>
+        <p><strong>Honors &amp; Campus Leadership:</strong> Student Council Treasurer (2023–24, event budget management); Best All-Rounder Award (BBA Dept, 2023–24); Best Student Volunteer Excellence Award (2024–25); Event Organizer Recognition (Yuvatarang 2024)</p>
+      </div>
+
+      <div class="cv-section">
+        <h4>Certifications</h4>
         <ul>
-          <li><strong>Interactive Portfolio &amp; Role Switcher</strong> — Dynamic skill and tagline switcher with custom eye interactions.</li>
-          <li><strong>Editorial &amp; Story Notes</strong> — Clear breakdowns of design, writing, and everyday builds.</li>
+          <li>Financial Modeling | Power BI | Business Analytics with Excel | Google Analytics</li>
+          <li>Financial Data Management &amp; Excel Fundamentals | Excel Automation using ChatGPT</li>
+          <li>HR Analytics | Market Risk in Financial Sector</li>
+          <li>AI in Digital Marketing | Social Media Management</li>
         </ul>
       </div>
     </div>
 
-    <iframe class="uploaded-embed" id="uploadedPdfFrame" title="Uploaded Resume Preview"></iframe>
-    <div class="resume-sheet" id="uploadedTextSheet" style="display:none">
-      <div class="cv-section" style="margin-top:0">
-        <h4 id="uploadedFileNameHeading">Uploaded Resume</h4>
-        <pre id="uploadedTextContent" style="white-space:pre-wrap;font-family:inherit;font-size:14px;color:#374151;line-height:1.65"></pre>
-      </div>
-    </div>
   </div>
 </div>
 
@@ -723,39 +748,8 @@ function doSearch(q){
     : "No results for '"+q+"'";
 }
 
-/* Resume viewer, upload & download */
+/* Resume viewer */
 const resumeModal = document.getElementById('resumeModal');
-const resumeInput = document.getElementById('resumeInput');
-const resumeHeaderLabel = document.getElementById('resumeHeaderLabel');
-const downloadResumeBtn = document.getElementById('downloadResumeBtn');
-const resetResumeBtn = document.getElementById('resetResumeBtn');
-const defaultResumeSheet = document.getElementById('defaultResumeSheet');
-const uploadedPdfFrame = document.getElementById('uploadedPdfFrame');
-const uploadedTextSheet = document.getElementById('uploadedTextSheet');
-const uploadedFileNameHeading = document.getElementById('uploadedFileNameHeading');
-const uploadedTextContent = document.getElementById('uploadedTextContent');
-
-let uploadedObjectUrl = null;
-const defaultResumeText = [
-  "MUDASER",
-  "Global Mobility & Relocation Cost Modeling | Marketing Analytics & Content Strategy | Event Operations & Client Coordination | Operations, Analytics & Execution Generalist | Financial Reporting & BI Analytics",
-  "Email: mudaser@example.com | Bengaluru, India",
-  "",
-  "PROFESSIONAL SUMMARY",
-  "Creative writer, developer, and visual storyteller focused on clear messaging, responsive interfaces, and thoughtful digital experiences.",
-  "",
-  "EXPERIENCE",
-  "Content & Web Creator (2024 - Present)",
-  "- Write structured articles, landing copy, and stories that keep audiences engaged.",
-  "- Build clean, fast, interactive web pages using HTML, CSS, and JavaScript.",
-  "",
-  "PROJECTS",
-  "- Interactive Portfolio & Role Switcher",
-  "- Editorial & Story Notes"
-].join("\n");
-
-const fallbackBlobUrl = URL.createObjectURL(new Blob([defaultResumeText], { type: "text/plain;charset=utf-8" }));
-downloadResumeBtn.href = fallbackBlobUrl;
 
 function openResumeModal(){
   closeSearch();
@@ -772,57 +766,6 @@ function closeAllModals(){
   document.getElementById('searchResult').innerHTML='';
   document.getElementById('overlay').classList.remove('show');
 }
-
-function resetToDefaultResume(){
-  if(uploadedObjectUrl){
-    URL.revokeObjectURL(uploadedObjectUrl);
-    uploadedObjectUrl = null;
-  }
-  resumeInput.value = "";
-  resumeHeaderLabel.textContent = "Mudaser — Resume";
-  downloadResumeBtn.href = fallbackBlobUrl;
-  downloadResumeBtn.download = "Mudaser-Resume.txt";
-  resetResumeBtn.style.display = "none";
-  uploadedPdfFrame.style.display = "none";
-  uploadedPdfFrame.removeAttribute("src");
-  uploadedTextSheet.style.display = "none";
-  defaultResumeSheet.style.display = "block";
-}
-
-resumeInput.addEventListener('change', e => {
-  const file = e.target.files && e.target.files[0];
-  if(!file) return;
-
-  if(uploadedObjectUrl) URL.revokeObjectURL(uploadedObjectUrl);
-  uploadedObjectUrl = URL.createObjectURL(file);
-
-  resumeHeaderLabel.textContent = `Mudaser — Resume (${file.name})`;
-  downloadResumeBtn.href = uploadedObjectUrl;
-  downloadResumeBtn.download = file.name;
-  resetResumeBtn.style.display = "inline-flex";
-  defaultResumeSheet.style.display = "none";
-
-  const lower = file.name.toLowerCase();
-  if(file.type === "application/pdf" || lower.endsWith(".pdf")){
-    uploadedTextSheet.style.display = "none";
-    uploadedPdfFrame.src = uploadedObjectUrl;
-    uploadedPdfFrame.style.display = "block";
-  } else if(file.type.startsWith("text/") || lower.endsWith(".txt")){
-    uploadedPdfFrame.style.display = "none";
-    uploadedPdfFrame.removeAttribute("src");
-    uploadedFileNameHeading.textContent = file.name;
-    file.text().then(txt => {
-      uploadedTextContent.textContent = txt;
-      uploadedTextSheet.style.display = "block";
-    });
-  } else {
-    uploadedPdfFrame.style.display = "none";
-    uploadedPdfFrame.removeAttribute("src");
-    uploadedFileNameHeading.textContent = file.name;
-    uploadedTextContent.textContent = `Uploaded "${file.name}" (${(file.size / 1024).toFixed(1)} KB). Use the Download button above to save or open the file.`;
-    uploadedTextSheet.style.display = "block";
-  }
-});
 </script>
 
 <style>
