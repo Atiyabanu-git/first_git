@@ -6,7 +6,7 @@
 <title>Hello Mudaser</title>
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
-  body{font-family:Arial,sans-serif;background:#F7F6F2;color:#111;text-align:center;overflow-x:hidden}
+  body{font-family:Arial,sans-serif;background:var(--page-bg);color:var(--page-text);text-align:center;overflow-x:hidden;transition:background-color .2s ease,color .2s ease}
   header{
     display:flex;
     justify-content:space-between;
@@ -15,7 +15,7 @@
     padding:18px 28px;
     position:sticky;
     top:0;
-    background:#fff;
+    background:var(--header-bg);
     z-index:100
   }
   .logo{
@@ -27,11 +27,11 @@
     text-align:left;
     line-height:1;
     text-decoration:none;
-    color:#111;
+    color:var(--page-text);
     flex-shrink:0
   }
   .logo-mark{width:58px;height:58px;flex-shrink:0}
-  .logo-mark path{fill:none;stroke:#111;stroke-width:8;stroke-linecap:round;stroke-linejoin:round}
+  .logo-mark path{fill:none;stroke:currentColor;stroke-width:8;stroke-linecap:round;stroke-linejoin:round}
   .top-nav{
     display:flex;
     align-items:center;
@@ -44,13 +44,13 @@
     align-items:center;
     gap:7px;
     text-decoration:none;
-    color:#2b2b2b;
+    color:var(--nav-text);
     font-size:15px;
     font-weight:500;
     padding:6px 4px;
     transition:color .2s ease
   }
-  .nav-link:hover{color:#000}
+  .nav-link:hover{color:var(--page-text)}
   .nav-ico{
     width:16px;
     height:16px;
@@ -67,33 +67,33 @@
     border-radius:50%;
     border:none;
     cursor:pointer;
-    background:#141416;
-    color:#fff;
+    background:var(--icon-button-bg);
+    color:var(--icon-button-text);
     display:inline-flex;
     align-items:center;
     justify-content:center;
     flex-shrink:0;
     transition:transform .15s ease, background .2s ease
   }
-  .icon-btn:hover{background:#000;transform:scale(1.04)}
+  .icon-btn:hover{background:var(--icon-button-hover);transform:scale(1.04)}
   .resume-btn{
     display:inline-flex;
     align-items:center;
     gap:8px;
     padding:9px 15px;
     border-radius:10px;
-    border:1px solid #e5e7eb;
-    background:#fff;
-    color:#111;
+    border:1px solid var(--control-border);
+    background:var(--control-bg);
+    color:var(--page-text);
     font-size:14px;
     font-weight:600;
     cursor:pointer;
     transition:background .2s ease, border-color .2s ease
   }
-  .resume-btn:hover{background:#f9fafb;border-color:#d1d5db}
+  .resume-btn:hover{background:var(--control-hover);border-color:var(--control-border)}
 
   .hero{padding:76px 24px 12px}
-  .hello-text{font-family:'Halvatica','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:22px;font-weight:700;letter-spacing:2.2px;color:#666;text-transform:uppercase}
+  .hello-text{font-family:'Halvatica','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:22px;font-weight:700;letter-spacing:2.2px;color:var(--muted-text);text-transform:uppercase}
   .wave-hand{display:inline-block;transform-origin:70% 70%;appearance:none;border:0;background:transparent;color:inherit;font:inherit;letter-spacing:inherit;padding:0;cursor:pointer}
   .hero h1{font-size:68px;margin:14px 0 24px;line-height:1.02}
   .hero h1.mudaser-bounce{animation:mudaserBounce .55s ease}
@@ -109,21 +109,21 @@
   .circle:active{transform:scale(.92)}
   .blue{background:#dbeafe}.cream{background:#fef3c7}.purple{background:#ede9fe}
   .pill-box{position:relative;display:inline-flex;align-items:center;justify-content:center}
-  .pill{background:#CFE5D5;padding:15px 28px;border-radius:34px;font-size:21px;font-weight:bold;cursor:pointer;user-select:none;transition:.2s;box-shadow:0 2px 10px rgba(0,0,0,.08);max-width:min(520px,calc(100vw - 180px));text-align:center;line-height:1.2}
+  .pill{background:#CFE5D5;color:#111;padding:15px 28px;border-radius:34px;font-size:18px;font-weight:bold;cursor:pointer;user-select:none;transition:.2s;box-shadow:0 2px 10px rgba(0,0,0,.08);max-width:min(520px,calc(100vw - 180px));text-align:center;line-height:1.2}
   .pill:active{transform:scale(.95)}
   .pill-tooltip{
     position:absolute;
-    top:calc(100% + 10px);
+    top:calc(100% + 4px);
     left:50%;
     transform:translateX(-50%) translateY(-4px);
-    background:#1b1d21;
-    color:#fff;
+    background:transparent;
+    color:#777;
     padding:7px 12px;
     border-radius:6px;
-    font-size:13px;
+    font-size:12px;
     font-weight:600;
     white-space:nowrap;
-    box-shadow:0 6px 18px rgba(0,0,0,.18);
+    box-shadow:none;
     opacity:0;
     pointer-events:none;
     transition:opacity .16s ease, transform .16s ease;
@@ -133,10 +133,17 @@
     opacity:1;
     transform:translateX(-50%) translateY(0);
   }
-  .sub{color:#777;font-size:18px;margin:28px auto 20px;line-height:1.5;max-width:520px;transition:opacity .2s ease}
-  .sub b{color:#111}
-  .meet{display:inline-block;background:#111;color:#fff;padding:18px 34px;border-radius:44px;text-decoration:none;font-size:20px;margin-top:8px;transition:.3s}
-  .meet:hover{transform:scale(1.05);background:#000}
+  .pill-box.hint-hidden .pill-tooltip{
+    background:transparent;
+    color:transparent;
+    box-shadow:none;
+    opacity:0;
+    transform:translateX(-50%) translateY(-4px);
+  }
+  .sub{color:var(--muted-text);font-size:18px;margin:28px auto 20px;line-height:1.5;max-width:520px;transition:opacity .2s ease}
+  .sub b{color:var(--page-text)}
+  .meet{display:inline-block;background:var(--meet-bg);color:var(--meet-text);padding:18px 34px;border-radius:44px;text-decoration:none;font-size:20px;margin-top:8px;transition:.3s}
+  .meet:hover{transform:scale(1.05);background:var(--meet-hover)}
 
   /* Upper Half-Eyes Only + Sleep + Blink */
   .eyes-wrap{
@@ -158,9 +165,9 @@
   .eye{
     width:216px;
     height:216px;
-    border:3px solid #111;
+    border:3px solid var(--eye-border);
     border-radius:50%;
-    background:#fff;
+    background:var(--eye-bg);
     position:relative;
     overflow:hidden;
     cursor:pointer;
@@ -173,7 +180,7 @@
     content:'';
     position:absolute;
     inset:0;
-    background:#fff;
+    background:var(--eye-bg);
     transform:scaleY(0);
     transform-origin:top;
     transition:transform .14s ease-in-out;
@@ -189,7 +196,7 @@
   .pupil{
     width:112px;
     height:112px;
-    background:#111;
+    background:var(--eye-pupil);
     border-radius:50%;
     position:absolute;
     top:42%;
@@ -202,7 +209,7 @@
     content:'';
     width:24px;
     height:24px;
-    background:#fff;
+    background:var(--eye-highlight);
     border-radius:50%;
     position:absolute;
     top:19px;
@@ -224,7 +231,7 @@
     display:inline-flex;
     align-items:baseline;
     gap:3px;
-    color:#777;
+    color:var(--muted-text);
     font-weight:800;
     opacity:0;
     pointer-events:none;
@@ -248,22 +255,505 @@
     max-width:720px;
     margin:48px auto;
     padding:28px 24px;
-    border:1px solid #ececec;
+    border:1px solid var(--surface-border);
     border-radius:24px;
     text-align:left;
-    background:#fafafa;
+    background:var(--surface-bg);
     scroll-margin-top:96px
   }
   .section-card h2{font-size:24px;margin-bottom:10px}
-  .section-card p{color:#555;line-height:1.6}
+  .section-card p{color:var(--body-muted);line-height:1.6}
 
-  .overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;z-index:150}
+  .contact-cta-section{
+    display:flex;
+    justify-content:center;
+    padding:48px 24px
+  }
+  .contact-cta{
+    width:100%;
+    max-width:1080px;
+    min-height:580px;
+    padding:56px 32px;
+    border-radius:24px;
+    background:#16171a;
+    color:#fff;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    gap:24px
+  }
+  .contact-cta-heading{
+    max-width:780px;
+    font-size:clamp(2rem,4.5vw,3.5rem);
+    font-weight:700;
+    line-height:1.15;
+    letter-spacing:-.02em
+  }
+  .contact-cta-subtext{max-width:520px;color:#a1a1aa;font-size:1rem}
+  .contact-cta-actions{
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+    justify-content:center;
+    align-items:center;
+    gap:12px;
+    margin-top:4px
+  }
+  .contact-cta-pill{
+    padding:10px 20px;
+    border:1px solid #2e3036;
+    border-radius:999px;
+    background:#1f2024;
+    color:#fff;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    font-size:.9rem;
+    font-weight:500;
+    text-decoration:none;
+    transition:background-color .2s ease
+  }
+  .contact-cta-pill:hover{background:#2a2c32}
+  .contact-cta-primary{border-color:#fff;background:#fff;color:#16171a}
+  .contact-cta-primary:hover{background:#e4e4e7}
+  .contact-cta-meta{display:flex;justify-content:center;margin-top:8px;color:#a1a1aa;font-size:.8rem}
+
+  .overlay{position:fixed;inset:0;background:var(--modal-overlay);display:none;z-index:150}
   .overlay.show{display:block}
-  .search-box{position:fixed;top:0;left:0;right:0;background:#fff;padding:20px;box-shadow:0 5px 20px rgba(0,0,0,.15);transform:translateY(-100%);transition:.4s;z-index:200;display:flex;gap:10px}
-  .search-box.open{transform:translateY(0)}
-  .search-box input{flex:1;padding:14px;border-radius:30px;border:1px solid #ddd;font-size:16px;outline:none}
-  .search-box button{padding:12px 20px;border-radius:30px;border:none;background:#111;color:#fff;cursor:pointer}
-  .result{padding:14px 20px;text-align:left;max-width:500px;margin:auto;font-size:16px}
+  :root{
+    --page-bg:#F7F6F2;
+    --page-text:#111;
+    --header-bg:#fff;
+    --nav-text:#2b2b2b;
+    --muted-text:#777;
+    --body-muted:#555;
+    --surface-bg:#fafafa;
+    --surface-border:#ececec;
+    --control-bg:#fff;
+    --control-hover:#f9fafb;
+    --control-border:#e5e7eb;
+    --icon-button-bg:#141416;
+    --icon-button-text:#fff;
+    --icon-button-hover:#000;
+    --meet-bg:#111;
+    --meet-text:#fff;
+    --meet-hover:#000;
+    --eye-bg:#fff;
+    --eye-border:#111;
+    --eye-pupil:#111;
+    --eye-highlight:#fff;
+    --modal-overlay:rgba(0,0,0,.45);
+    --resume-bg:#f4f5f7;
+    --resume-topbar-bg:#fff;
+    --resume-sheet-bg:#fff;
+    --resume-text:#111;
+    --resume-muted:#666;
+    --resume-body-text:#374151;
+    --resume-border:#e5e7eb;
+    --resume-control-bg:#fff;
+    --resume-control-hover:#f9fafb;
+    --resume-action-bg:#111;
+    --resume-action-text:#fff;
+    --chat-bg:#111;
+    --chat-text:#fff;
+    --palette-overlay:rgba(15,23,42,.45);
+    --palette-bg:#fff;
+    --palette-card:#f8fafc;
+    --palette-card-hover:#f1f5f9;
+    --palette-border:#e2e8f0;
+    --palette-text:#0f172a;
+    --palette-muted:#64748b;
+  }
+  body.dark-mode{
+    --page-bg:#0b0f14;
+    --page-text:#f3f4f6;
+    --header-bg:#111827;
+    --nav-text:#d1d5db;
+    --muted-text:#9ca3af;
+    --body-muted:#cbd5e1;
+    --surface-bg:#161b22;
+    --surface-border:#30363d;
+    --control-bg:#1f2937;
+    --control-hover:#273549;
+    --control-border:#374151;
+    --icon-button-bg:#e5e7eb;
+    --icon-button-text:#111827;
+    --icon-button-hover:#fff;
+    --meet-bg:#e5e7eb;
+    --meet-text:#111827;
+    --meet-hover:#fff;
+    --eye-bg:#fff;
+    --eye-border:#e5e7eb;
+    --eye-pupil:#111;
+    --eye-highlight:#fff;
+    --modal-overlay:rgba(0,0,0,.72);
+    --resume-bg:#111827;
+    --resume-topbar-bg:#1f2937;
+    --resume-sheet-bg:#161b22;
+    --resume-text:#f9fafb;
+    --resume-muted:#9ca3af;
+    --resume-body-text:#cbd5e1;
+    --resume-border:#374151;
+    --resume-control-bg:#1f2937;
+    --resume-control-hover:#273549;
+    --resume-action-bg:#e5e7eb;
+    --resume-action-text:#111827;
+    --chat-bg:#e5e7eb;
+    --chat-text:#111827;
+    --palette-overlay:rgba(0,0,0,.65);
+    --palette-bg:#111827;
+    --palette-card:#1f2937;
+    --palette-card-hover:#273549;
+    --palette-border:#374151;
+    --palette-text:#f9fafb;
+    --palette-muted:#9ca3af;
+  }
+  .command-backdrop{
+    position:fixed;
+    inset:0;
+    z-index:300;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    background:var(--palette-overlay);
+    backdrop-filter:blur(4px)
+  }
+  .command-backdrop.open{display:flex}
+  .command-modal{
+    width:100%;
+    max-width:640px;
+    max-height:82vh;
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+    color:var(--palette-text);
+    background:var(--palette-bg);
+    border:1px solid var(--palette-border);
+    border-radius:20px;
+    box-shadow:0 24px 60px rgba(0,0,0,.25);
+    text-align:left
+  }
+  .command-header{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:16px 20px;
+    border-bottom:1px solid var(--palette-border)
+  }
+  .command-header .command-icon{color:var(--palette-muted)}
+  .command-input{
+    flex:1;
+    min-width:0;
+    border:0;
+    outline:0;
+    background:transparent;
+    color:var(--palette-text);
+    font:16px Arial,sans-serif
+  }
+  .command-input::placeholder{color:var(--palette-muted)}
+  .command-close{
+    padding:4px 8px;
+    border:1px solid var(--palette-border);
+    border-radius:6px;
+    background:var(--palette-card);
+    color:var(--palette-muted);
+    font-size:11px;
+    font-weight:700;
+    cursor:pointer
+  }
+  .command-close-x{
+    width:28px;
+    height:28px;
+    padding:0;
+    border:1px solid var(--palette-border);
+    border-radius:6px;
+    background:var(--palette-card);
+    color:var(--palette-muted);
+    font-size:16px;
+    line-height:1;
+    cursor:pointer
+  }
+  .command-close-x:hover{background:var(--palette-card-hover)}
+  .command-body{
+    display:flex;
+    flex-direction:column;
+    gap:22px;
+    padding:18px 20px 24px;
+    overflow-y:auto
+  }
+  .command-section-label{
+    margin-bottom:10px;
+    color:var(--palette-muted);
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.08em;
+    text-transform:uppercase
+  }
+  .command-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .command-card,.command-nav-item{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    border:1px solid var(--palette-border);
+    background:var(--palette-card);
+    color:var(--palette-text);
+    text-align:left;
+    text-decoration:none;
+    font:500 14px Arial,sans-serif;
+    cursor:pointer;
+    transition:background-color .15s ease,border-color .15s ease
+  }
+  .command-card{padding:14px 16px;border-radius:14px}
+  .command-nav-item{padding:13px 16px;border-radius:12px}
+  .command-card:hover,.command-nav-item:hover{background:var(--palette-card-hover)}
+  .command-left{display:flex;align-items:center;gap:10px}
+  .command-meta{color:var(--palette-muted);font-size:11px;font-weight:600}
+  .command-switch{
+    position:relative;
+    width:36px;
+    height:20px;
+    flex-shrink:0;
+    border-radius:999px;
+    background:#cbd5e1
+  }
+  .command-switch::after{
+    position:absolute;
+    top:3px;
+    left:3px;
+    width:14px;
+    height:14px;
+    border-radius:50%;
+    background:#fff;
+    content:"";
+    transition:transform .2s ease
+  }
+  body.dark-mode .command-switch{background:#38bdf8}
+  body.dark-mode .command-switch::after{transform:translateX(16px);background:#0f172a}
+  .command-nav-list{display:flex;flex-direction:column;gap:8px}
+  .command-social-card{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding:14px 16px;
+    border:1px solid var(--palette-border);
+    border-radius:14px;
+    background:var(--palette-card);
+    color:var(--palette-text);
+    text-decoration:none;
+    font-size:14px;
+    font-weight:500;
+    transition:background-color .15s ease,transform .15s ease
+  }
+  .command-social-card:hover{background:var(--palette-card-hover);transform:translateY(-1px)}
+  .command-icon{width:18px;height:18px;flex-shrink:0}
+  .command-toast{
+    position:fixed;
+    bottom:24px;
+    left:50%;
+    z-index:400;
+    transform:translateX(-50%);
+    padding:10px 16px;
+    border-radius:999px;
+    background:#0f172a;
+    color:#fff;
+    font-size:13px;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .2s ease
+  }
+  .command-toast.show{opacity:1}
+
+  .business-card-backdrop{
+    position:fixed;
+    inset:0;
+    z-index:350;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    background:rgba(17,24,39,.35);
+    backdrop-filter:blur(8px)
+  }
+  .business-card-backdrop.open{display:flex}
+  .digital-card-wrapper{
+    width:100%;
+    max-width:440px;
+    max-height:calc(100vh - 40px);
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    overflow-y:auto;
+    scrollbar-width:none;
+    -ms-overflow-style:none
+  }
+  .digital-card-wrapper::-webkit-scrollbar{display:none}
+  .digital-card-topbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    flex-wrap:wrap
+  }
+  .digital-card-brand{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    color:#1f2937;
+    font-size:13px;
+    font-weight:600
+  }
+  .digital-card-dot{width:8px;height:8px;border-radius:50%;background:#16a34a}
+  .digital-card-top-actions{display:flex;align-items:center;gap:8px}
+  .digital-card-pill,.digital-card-close{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    height:32px;
+    border:1px solid rgba(255,255,255,.7);
+    background:rgba(255,255,255,.9);
+    color:#111827;
+    font-weight:600;
+    cursor:pointer
+  }
+  .digital-card-pill{padding:0 12px;border-radius:999px;font-size:12px}
+  #businessCardQrButton[aria-expanded="true"] .digital-card-icon{display:none}
+  .digital-card-close{width:32px;border-radius:50%;font-size:16px}
+  .digital-business-card{
+    perspective:1000px;
+    color:#111827;
+    text-align:left
+  }
+  .digital-card-flip-inner{
+    position:relative;
+    transform-style:preserve-3d;
+    transition:transform .65s cubic-bezier(.2,.7,.2,1)
+  }
+  .digital-business-card.is-flipped .digital-card-flip-inner{transform:rotateY(180deg)}
+  .digital-card-face{
+    padding:20px;
+    border:1px solid #e5e7eb;
+    border-radius:22px;
+    background:#f9fafb;
+    box-shadow:0 20px 50px rgba(0,0,0,.14);
+    backface-visibility:hidden
+  }
+  .digital-card-front{position:relative;display:flex;flex-direction:column;gap:16px}
+  .digital-card-back{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transform:rotateY(180deg)
+  }
+  .digital-profile-header{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:14px
+  }
+  .digital-profile-name{margin-bottom:6px;color:#111827;font-size:24px;font-weight:700;line-height:1.2}
+  .digital-profile-role{color:#4b5563;font-size:13px;line-height:1.45}
+  .digital-card-avatar{
+    width:64px;
+    height:64px;
+    flex-shrink:0;
+    border:1px solid #d1d5db;
+    border-radius:50%;
+    background:#e5e7eb;
+    object-fit:cover;
+    object-position:center 30%
+  }
+  .digital-contact-list{display:flex;flex-direction:column;gap:10px}
+  .digital-contact-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    padding:12px 14px;
+    border:1px solid #e5e7eb;
+    border-radius:14px;
+    background:#fff
+  }
+  .digital-contact-left{display:flex;align-items:center;gap:10px;min-width:0}
+  .digital-contact-text{
+    overflow:hidden;
+    color:#111827;
+    font-size:14px;
+    font-weight:500;
+    text-overflow:ellipsis;
+    white-space:nowrap
+  }
+  .digital-card-icon{width:16px;height:16px;flex-shrink:0}
+  .digital-copy-button{
+    flex-shrink:0;
+    padding:6px 12px;
+    border:1px solid #e5e7eb;
+    border-radius:999px;
+    background:#f9fafb;
+    color:#374151;
+    font-size:12px;
+    font-weight:600;
+    cursor:pointer
+  }
+  .digital-copy-button:hover{background:#f3f4f6;color:#111827}
+  .digital-qr-box{
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    padding:18px;
+    border:1px solid #e5e7eb;
+    border-radius:14px;
+    background:#fff;
+    text-align:center
+  }
+  .digital-qr-box{gap:10px}
+  .digital-qr-box img{display:block;width:150px;height:auto;max-width:100%;aspect-ratio:1;object-fit:contain}
+  .digital-qr-caption{color:#6b7280;font-size:12px}
+  .digital-bottom-actions{display:flex;align-items:center;justify-content:center}
+  .digital-business-card.is-flipped + .digital-bottom-actions{display:none}
+  .digital-whatsapp-pill{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding:11px 22px;
+    border:1px solid rgba(255,255,255,.75);
+    border-radius:999px;
+    background:rgba(255,255,255,.9);
+    box-shadow:0 4px 12px rgba(0,0,0,.06);
+    color:#111827;
+    font-size:13px;
+    font-weight:600;
+    text-decoration:none
+  }
+  .digital-whatsapp-pill:hover{background:#fff}
+  .business-card-toast{
+    position:fixed;
+    bottom:24px;
+    left:50%;
+    z-index:450;
+    transform:translateX(-50%);
+    padding:9px 16px;
+    border-radius:999px;
+    background:#111827;
+    color:#fff;
+    font-size:13px;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .2s ease
+  }
+  .business-card-toast.show{opacity:1}
+  @media (prefers-reduced-motion:reduce){
+    .digital-card-flip-inner{transition:none}
+  }
 
   /* Resume Viewer */
   .resume-modal{
@@ -274,8 +764,8 @@
     width:min(94vw, 860px);
     max-height:88vh;
     overflow-y:auto;
-    background:#f4f5f7;
-    color:#111;
+    background:var(--resume-bg);
+    color:var(--resume-text);
     border-radius:16px;
     box-shadow:0 24px 60px rgba(0,0,0,.24);
     z-index:220;
@@ -286,8 +776,8 @@
   .resume-topbar{
     position:sticky;
     top:0;
-    background:#fff;
-    border-bottom:1px solid #e5e7eb;
+    background:var(--resume-topbar-bg);
+    border-bottom:1px solid var(--resume-border);
     padding:14px 20px;
     display:flex;
     justify-content:space-between;
@@ -296,7 +786,7 @@
     flex-wrap:wrap;
     z-index:5
   }
-  .resume-title-wrap{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:#222}
+  .resume-title-wrap{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--resume-text)}
   .live-dot{width:8px;height:8px;border-radius:50%;background:#16a34a;flex-shrink:0}
   .resume-toolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
   .tool-btn{
@@ -305,21 +795,21 @@
     gap:6px;
     padding:7px 12px;
     border-radius:8px;
-    border:1px solid #e5e7eb;
-    background:#fff;
-    color:#111;
+    border:1px solid var(--resume-border);
+    background:var(--resume-control-bg);
+    color:var(--resume-text);
     font-size:13px;
     font-weight:600;
     cursor:pointer;
     text-decoration:none
   }
-  .tool-btn:hover{background:#f9fafb}
-  .tool-btn.dark{background:#111;color:#fff;border-color:#111}
-  .tool-btn.dark:hover{background:#000}
+  .tool-btn:hover{background:var(--resume-control-hover)}
+  .tool-btn.dark{background:var(--resume-action-bg);color:var(--resume-action-text);border-color:var(--resume-action-bg)}
+  .tool-btn.dark:hover{filter:brightness(.94)}
   .resume-body{padding:24px}
   .resume-sheet{
-    background:#fff;
-    border:1px solid #e5e7eb;
+    background:var(--resume-sheet-bg);
+    border:1px solid var(--resume-border);
     border-radius:10px;
     padding:36px 40px;
     box-shadow:0 4px 18px rgba(0,0,0,.04)
@@ -330,12 +820,12 @@
     align-items:flex-start;
     gap:20px;
     padding-bottom:20px;
-    border-bottom:1px solid #e5e7eb;
+    border-bottom:1px solid var(--resume-border);
     flex-wrap:wrap
   }
-  .cv-name{font-size:30px;font-weight:900;letter-spacing:.5px;color:#111}
-  .cv-role{font-size:13px;color:#666;margin-top:6px}
-  .cv-contact{font-size:12px;color:#444;line-height:1.7;text-align:right}
+  .cv-name{font-size:30px;font-weight:900;letter-spacing:.5px;color:var(--resume-text)}
+  .cv-role{font-size:13px;color:var(--resume-muted);margin-top:6px}
+  .cv-contact{font-size:12px;color:var(--resume-body-text);line-height:1.7;text-align:right}
   .cv-contact a{color:inherit;text-decoration:none}
   .cv-contact a:hover{text-decoration:underline}
   .cv-section{margin-top:22px}
@@ -345,15 +835,15 @@
     font-weight:800;
     letter-spacing:1.2px;
     text-transform:uppercase;
-    color:#111;
+    color:var(--resume-text);
     margin-bottom:8px
   }
-  .cv-section p,.cv-section li{font-size:14px;color:#374151;line-height:1.65}
+  .cv-section p,.cv-section li{font-size:14px;color:var(--resume-body-text);line-height:1.65}
   .cv-section ul{padding-left:18px;margin-top:6px}
   .cv-row{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:4px}
-  .cv-row strong{font-size:15px;color:#111}
-  .cv-row span{font-size:13px;color:#6b7280}
-  .chat{position:fixed;bottom:20px;right:20px;width:56px;height:56px;border-radius:50%;background:#111;color:#fff;border:none;font-size:22px;cursor:pointer;z-index:90}
+  .cv-row strong{font-size:15px;color:var(--resume-text)}
+  .cv-row span{font-size:13px;color:var(--resume-muted)}
+  .chat{position:fixed;bottom:20px;right:20px;width:56px;height:56px;border-radius:50%;background:var(--chat-bg);color:var(--chat-text);border:none;font-size:22px;cursor:pointer;z-index:90}
 
   @media (max-width:768px){
     header{padding:14px 16px}
@@ -368,6 +858,80 @@
     .eye{width:176px;height:176px}
     .pupil{width:92px;height:92px}
     .eyes{height:92px}
+  }
+  @media (max-width:540px){
+    header{
+      flex-wrap:wrap;
+      gap:8px 12px;
+      padding:12px
+    }
+    header.header-hidden{
+      transform:translateY(-100%);
+      pointer-events:none
+    }
+    header{transition:transform .22s ease}
+    .logo{gap:8px;font-size:24px}
+    .logo-mark{width:44px;height:44px}
+    .top-nav{
+      flex:1 0 100%;
+      width:100%;
+      min-width:0;
+      display:grid;
+      grid-template-columns:max-content max-content max-content;
+      grid-template-rows:auto auto;
+      justify-content:center;
+      justify-items:center;
+      gap:4px
+    }
+    #searchButton{grid-column:1;grid-row:1}
+    .resume-btn{grid-column:2;grid-row:1}
+    .nav-link[href="#experience"]{grid-column:1;grid-row:2}
+    .nav-link[href="#projects"]{grid-column:2;grid-row:2}
+    .nav-link[href="#beyond-work"]{grid-column:3;grid-row:2}
+    .nav-link{gap:4px;padding:6px 2px;font-size:12px;white-space:nowrap}
+    .icon-btn{width:36px;height:36px}
+    .resume-btn{gap:6px;padding:7px 10px;font-size:12px}
+    .hero{padding:44px 16px 12px}
+    .hello-text{font-size:18px}
+    .hero h1{margin:12px 0 20px;font-size:clamp(38px,11vw,48px);white-space:nowrap}
+    .pill-wrap{gap:8px}
+    .circle{width:42px;height:42px;font-size:18px}
+    .pill{max-width:calc(100vw - 128px);padding:12px 16px;font-size:16px}
+    .meet{padding:14px 20px;font-size:16px}
+    .eyes-wrap{margin-top:32px}
+    .eyes{gap:8px}
+    .eye{width:min(40vw,160px);height:min(40vw,160px)}
+    .pupil{width:min(25vw,92px);height:min(25vw,92px)}
+    .section-card{margin:32px 12px;padding:22px 18px}
+    .section-card h2{font-size:21px}
+    .contact-cta-section{padding:32px 16px}
+    .contact-cta{min-height:480px;padding:48px 20px;border-radius:20px;gap:20px}
+    .contact-cta-actions{gap:10px}
+    .chat{right:14px;bottom:14px;width:48px;height:48px;font-size:20px}
+    .command-grid{grid-template-columns:1fr}
+    .command-backdrop{padding:12px}
+    .command-header{padding:14px}
+    .command-body{padding:16px 14px 20px}
+    .resume-modal{
+      width:calc(100vw - 20px);
+      max-height:calc(100vh - 20px);
+      max-height:calc(100dvh - 20px);
+      border-radius:12px
+    }
+    .resume-topbar{padding:12px}
+    .resume-body{padding:12px}
+    .resume-sheet{padding:18px 14px}
+    .cv-name{font-size:24px}
+    .cv-section p,.cv-section li{font-size:13px}
+    .business-card-backdrop{padding:12px}
+    .digital-card-wrapper{max-height:calc(100vh - 24px);max-height:calc(100dvh - 24px)}
+    .digital-card-face{padding:16px}
+    .digital-card-avatar{width:56px;height:56px}
+    .digital-profile-name{font-size:21px}
+    .digital-contact-row{padding:10px 12px}
+    .digital-contact-text{font-size:13px}
+    .digital-qr-box{padding:12px}
+    .digital-qr-box img{width:min(150px,42vw)}
   }
 </style>
 </head>
@@ -403,7 +967,7 @@
       </svg>
       <span>Beyond Work</span>
     </a>
-    <button class="icon-btn" onclick="openSearch()" aria-label="Search">
+    <button class="icon-btn" id="searchButton" onclick="openSearch()" aria-label="Search">
       <svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true">
         <circle cx="11" cy="11" r="7"/>
         <path d="m20 20-3.5-3.5"/>
@@ -421,11 +985,158 @@
   </nav>
 </header>
 
-<div class="search-box" id="searchBox">
-  <input id="searchInput" placeholder="Search skills, experience, projects, resume..." oninput="doSearch(this.value)">
-  <button onclick="closeSearch()">✕</button>
+<div class="command-backdrop" id="searchModalBackdrop" role="dialog" aria-modal="true" aria-label="Command Search">
+  <div class="command-modal">
+    <div class="command-header">
+      <svg class="command-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <circle cx="11" cy="11" r="8"></circle>
+        <path d="m21 21-4.35-4.35"></path>
+      </svg>
+      <input id="searchInput" class="command-input" type="text" placeholder="Type a command or search..." autocomplete="off" aria-label="Search commands and pages">
+      <button id="closeSearchButton" class="command-close" type="button" aria-label="Close search with Escape">ESC</button>
+      <button id="closeSearchXButton" class="command-close-x" type="button" aria-label="Close search">×</button>
+    </div>
+    <div class="command-body" id="commandBody">
+      <div class="command-section" data-section="quick">
+        <div class="command-section-label">Quick Actions</div>
+        <div class="command-grid">
+          <a id="resumeLink" href="assets/Mohammed%20Mudaser%20-%20Resume.pdf" download="Mohammed-Mudaser-Resume.pdf" target="_blank" rel="noopener noreferrer" class="command-card searchable" data-keywords="resume cv pdf mohammed mudaser">
+            <span class="command-left">
+              <svg class="command-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+              <span>Resume</span>
+            </span>
+            <span class="command-meta">PDF</span>
+          </a>
+          <button type="button" id="copyEmailButton" class="command-card searchable" data-keywords="copy email mail contact">
+            <span class="command-left">
+              <svg class="command-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+              <span>Copy Email</span>
+            </span>
+            <span class="command-meta" id="emailStatus">Copy</span>
+          </button>
+          <button type="button" id="businessCardButton" class="command-card searchable" data-keywords="business card vcard profile contact">
+            <span class="command-left">
+              <svg class="command-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect width="20" height="14" x="2" y="5" rx="2"></rect><line x1="2" x2="22" y1="10" y2="10"></line></svg>
+              <span>Business Card</span>
+            </span>
+            <span class="command-meta">Open</span>
+          </button>
+          <button type="button" id="themeButton" class="command-card searchable" data-keywords="light mode dark mode theme">
+            <span class="command-left">
+              <svg class="command-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
+              <span id="themeLabel">Light Mode</span>
+            </span>
+            <span class="command-switch" aria-hidden="true"></span>
+          </button>
+        </div>
+      </div>
+      <div class="command-section" data-section="navigation">
+        <div class="command-section-label">Pages</div>
+        <div class="command-nav-list">
+          <a href="#home" class="command-nav-item searchable palette-link" data-keywords="home start top"><span>Home</span><span class="command-meta">→</span></a>
+          <a href="#projects" class="command-nav-item searchable palette-link" data-keywords="projects work portfolio build"><span>Projects</span><span class="command-meta">→</span></a>
+          <a href="#experience" class="command-nav-item searchable palette-link" data-keywords="experience experiences career roles"><span>Experience</span><span class="command-meta">→</span></a>
+          <a href="#beyond-work" class="command-nav-item searchable palette-link" data-keywords="beyond work hobbies life personal"><span>Beyond Work</span><span class="command-meta">→</span></a>
+        </div>
+      </div>
+      <div class="command-section" data-section="socials">
+        <div class="command-section-label">Connect</div>
+        <div class="command-grid">
+          <a href="https://wa.me/917975771675?text=Hi%2C%20I%20found%20your%20portfolio%20and%20wanted%20to%20connect." target="_blank" rel="noopener noreferrer" class="command-social-card searchable palette-link" data-keywords="whatsapp chat message phone 7975771675">
+            <span class="command-left">
+              <svg class="command-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.52 3.48A11.82 11.82 0 0 0 12.07 0C5.5 0 .16 5.34.16 11.9c0 2.1.55 4.15 1.6 5.96L0 24l6.33-1.66a11.84 11.84 0 0 0 5.74 1.46h.01c6.57 0 11.91-5.34 11.91-11.9 0-3.18-1.24-6.17-3.47-8.42ZM12.08 21.8h-.01a9.84 9.84 0 0 1-5.02-1.37l-.36-.21-3.76.99 1-3.66-.23-.38a9.82 9.82 0 0 1-1.51-5.25c0-5.43 4.42-9.85 9.86-9.85 2.63 0 5.1 1.02 6.96 2.88a9.78 9.78 0 0 1 2.89 6.97c0 5.44-4.42 9.85-9.85 9.85Zm5.4-7.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.14-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.05 1.02-1.05 2.5s1.07 2.9 1.22 3.1c.15.2 2.11 3.22 5.11 4.52.71.31 1.27.49 1.71.63.72.23 1.37.2 1.89.12.58-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.12-.27-.2-.57-.35Z"/></svg>
+              <span>WhatsApp</span>
+            </span>
+            <span class="command-meta">Chat</span>
+          </a>
+          <a href="https://www.linkedin.com/in/mdmudaser" target="_blank" rel="noopener noreferrer" class="command-social-card searchable palette-link" data-keywords="linkedin connect profile network mdmudaser">
+            <span class="command-left">
+              <svg class="command-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 3A2 2 0 0 1 21 5V19A2 2 0 0 1 19 21H5A2 2 0 0 1 3 19V5A2 2 0 0 1 5 3H19ZM8.34 17.34V10.67H6.12V17.34H8.34ZM7.23 9.75C8 9.75 8.48 9.24 8.48 8.61C8.47 7.96 8 7.47 7.25 7.47C6.5 7.47 6 7.96 6 8.61C6 9.24 6.48 9.75 7.22 9.75H7.23ZM18 17.34V13.56C18 11.53 16.92 10.59 15.48 10.59C14.32 10.59 13.8 11.23 13.51 11.68V10.67H11.3C11.33 11.29 11.3 17.34 11.3 17.34H13.51V13.62C13.51 13.42 13.53 13.22 13.59 13.08C13.75 12.68 14.11 12.27 14.72 12.27C15.51 12.27 15.83 12.87 15.83 13.75V17.34H18Z"/></svg>
+              <span>LinkedIn</span>
+            </span>
+            <span class="command-meta">Connect</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-<div class="result" id="searchResult"></div>
+<div class="command-toast" id="commandToast" role="status" aria-live="polite"></div>
+
+<div class="business-card-backdrop" id="businessCardBackdrop" role="dialog" aria-modal="true" aria-labelledby="businessCardHeading">
+  <div class="digital-card-wrapper">
+    <div class="digital-card-topbar">
+      <div class="digital-card-brand">
+        <span class="digital-card-dot" aria-hidden="true"></span>
+        <span id="businessCardHeading">Digital Business Card</span>
+      </div>
+      <div class="digital-card-top-actions">
+        <button id="businessCardQrButton" class="digital-card-pill" type="button" aria-expanded="false">
+          <svg class="digital-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <rect x="3" y="3" width="7" height="7"></rect>
+            <rect x="14" y="3" width="7" height="7"></rect>
+            <rect x="3" y="14" width="7" height="7"></rect>
+            <path d="M14 14h3v3h-3z"></path>
+            <path d="M20 14v7h-3"></path>
+          </svg>
+          <span id="businessCardToggleLabel">QR Code</span>
+        </button>
+        <button id="closeBusinessCardButton" class="digital-card-close" type="button" aria-label="Close business card">×</button>
+      </div>
+    </div>
+
+    <div class="digital-business-card" id="digitalBusinessCard">
+      <div class="digital-card-flip-inner">
+        <div id="businessContactView" class="digital-card-face digital-card-front">
+          <div class="digital-profile-header">
+            <div>
+              <div class="digital-profile-name">Mohammed Mudaser</div>
+              <div class="digital-profile-role">Global Mobility Cost Modeling | Reporting &amp; BI Analytics | Marketing &amp; Event Operations</div>
+            </div>
+            <img class="digital-card-avatar" src="assets/IMG_20261126_184040.png" alt="Mohammed Mudaser" width="64" height="64">
+          </div>
+
+          <div class="digital-contact-list">
+            <div class="digital-contact-row">
+              <div class="digital-contact-left">
+                <svg class="digital-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+                <span class="digital-contact-text">+91 7975771675</span>
+              </div>
+              <button id="copyBusinessPhoneButton" class="digital-copy-button" type="button">Copy</button>
+            </div>
+            <div class="digital-contact-row">
+              <div class="digital-contact-left">
+                <svg class="digital-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                </svg>
+                <span class="digital-contact-text">mudaserinfo21@gmail.com</span>
+              </div>
+              <button id="copyBusinessEmailButton" class="digital-copy-button" type="button">Copy</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="businessCardQrView" class="digital-card-face digital-card-back digital-qr-box">
+          <img id="businessCardQrImage" alt="QR code for Mohammed Mudaser's contact details" width="150" height="150">
+          <div class="digital-qr-caption">Scan to save Mohammed Mudaser’s contact details</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="digital-bottom-actions">
+      <a class="digital-whatsapp-pill" href="https://wa.me/917975771675?text=Hi%20Mohammed%2C%20I%20viewed%20your%20digital%20business%20card." target="_blank" rel="noopener noreferrer">
+        <svg class="digital-card-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M20.52 3.48A11.82 11.82 0 0 0 12.07 0C5.5 0 .16 5.34.16 11.9c0 2.1.55 4.15 1.6 5.96L0 24l6.33-1.66a11.84 11.84 0 0 0 5.74 1.46h.01c6.57 0 11.91-5.34 11.91-11.9 0-3.18-1.24-6.17-3.47-8.42ZM12.08 21.8h-.01a9.84 9.84 0 0 1-5.02-1.37l-.36-.21-3.76.99 1-3.66-.23-.38a9.82 9.82 0 0 1-1.51-5.25c0-5.43 4.42-9.85 9.86-9.85 2.63 0 5.1 1.02 6.96 2.88a9.78 9.78 0 0 1 2.89 6.97c0 5.44-4.42 9.85-9.85 9.85Zm5.4-7.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.14-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.05 1.02-1.05 2.5s1.07 2.9 1.22 3.1c.15.2 2.11 3.22 5.11 4.52.71.31 1.27.49 1.71.63.72.23 1.37.2 1.89.12.58-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.12-.27-.2-.57-.35Z"></path>
+        </svg>
+        <span>WhatsApp</span>
+      </a>
+    </div>
+  </div>
+</div>
+<div class="business-card-toast" id="businessCardToast" role="status" aria-live="polite"></div>
 
 <div class="overlay" id="overlay" onclick="closeAllModals()"></div>
 
@@ -541,14 +1252,14 @@
   </div>
 </div>
 
-<section class="hero">
+<section class="hero" id="home">
   <div class="hello-text"><button type="button" class="wave-hand" id="helloHand" aria-label="Wave hello">👋</button> HELLO!</div>
   <h1>I'm <b>Mudaser</b></h1>
   <div class="pill-wrap">
     <div class="circle blue" id="leftCircle" onclick="prevSkill(true)">💼</div>
     <div class="pill-box">
       <div class="pill" id="skillPill" onclick="nextSkill(true)">📊 Global Mobility &amp; Relocation Cost Modeling</div>
-      <div class="pill-tooltip" id="pillTooltip">Global Mobility &amp; Relocation Cost Modeling (Click to switch)</div>
+      <div class="pill-tooltip" id="pillTooltip">Click to switch</div>
     </div>
     <div class="circle purple" id="rightCircle" onclick="nextSkill(true)">📑</div>
   </div>
@@ -579,15 +1290,32 @@
   <p>Share what you enjoy outside work—reading, side experiments, or community notes.</p>
 </section>
 
+<section class="contact-cta-section" id="contact" aria-labelledby="contactCtaHeading">
+  <div class="contact-cta">
+    <h2 class="contact-cta-heading" id="contactCtaHeading">Cost models. Live dashboards. On-ground ops.</h2>
+    <p class="contact-cta-subtext">Need precision across numbers, reports, or events? Let’s talk</p>
+
+    <div class="contact-cta-actions">
+      <a class="contact-cta-pill" href="mailto:mudaserinfo21@gmail.com">Email</a>
+      <a class="contact-cta-pill contact-cta-primary" href="https://www.linkedin.com/in/mdmudaser" target="_blank" rel="noopener noreferrer">Let's Connect</a>
+      <a class="contact-cta-pill" href="https://wa.me/917975771675" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+    </div>
+
+    <div class="contact-cta-meta">
+      <span>© 2026 Mudaser. All rights reserved.</span>
+    </div>
+  </div>
+</section>
+
 <button class="chat" onclick="alert('Hi! This is Mudaser 💬')">💬</button>
 
 <script>
 const roleItems = [
-  { skill: "📊 Global Mobility & Relocation Cost Modeling", label: "Global Mobility & Relocation Cost Modeling", leftIcon: "💼", rightIcon: "📑", sub: "Policy- and tax-driven relocation estimates (TEQ & COC via AirInc and Mercer) that cut revision turnaround by <b>20%</b>." },
-  { skill: "📈 Marketing Analytics & Content Strategy", label: "Marketing Analytics & Content Strategy", leftIcon: "🎯", rightIcon: "✍️", sub: "Pairing campaign metrics and structured data with sharp copy to drive <b>measurable audience growth</b>." },
-  { skill: "🎪 Event Operations & Client Coordination", label: "Event Operations & Client Coordination", leftIcon: "📋", rightIcon: "🤝", sub: "Tight trackers, confirmed bookings, and <b>calm execution</b> when the clock is ticking on-ground." },
-  { skill: "⚙️ Operations, Analytics & Execution Generalist", label: "Operations, Analytics & Execution Generalist", leftIcon: "🔄", rightIcon: "✅", sub: "Structured spreadsheets by day, live logistics and rollout whenever <b>systems need to move</b>." },
-  { skill: "📊 Financial Reporting & BI Analytics", label: "Financial Reporting & BI Analytics", leftIcon: "📉", rightIcon: "🖥️", sub: "Automated Excel and Power BI dashboards that cut stakeholder prep time by <b>30%</b> and turn raw variance into clear calls." }
+  { skill: "📊 Global Mobility & Relocation Cost Modeling", leftIcon: "💼", rightIcon: "📑", sub: "Policy- and tax-driven relocation estimates (TEQ & COC via AirInc and Mercer) that cut revision turnaround by <b>20%</b>." },
+  { skill: "📈 Marketing Analytics & Content Strategy", leftIcon: "🎯", rightIcon: "✍️", sub: "Pairing campaign metrics and structured data with sharp copy to drive <b>measurable audience growth</b>." },
+  { skill: "🎪 Event Operations & Client Coordination", leftIcon: "📋", rightIcon: "🤝", sub: "Tight trackers, confirmed bookings, and <b>calm execution</b> when the clock is ticking on-ground." },
+  { skill: "⚙️ Operations, Analytics & Execution Generalist", leftIcon: "🔄", rightIcon: "✅", sub: "Structured spreadsheets by day, live logistics and rollout whenever <b>systems need to move</b>." },
+  { skill: "📊 Financial Reporting & BI Analytics", leftIcon: "📉", rightIcon: "🖥️", sub: "Automated Excel and Power BI dashboards that cut stakeholder prep time by <b>30%</b> and turn raw variance into clear calls." }
 ];
 
 const skills = roleItems.map(item => item.skill);
@@ -597,14 +1325,18 @@ const AUTO_ROTATE_MS = 5000;
 
 const skillPillEl = document.getElementById('skillPill');
 const pillTooltipEl = document.getElementById('pillTooltip');
+const pillBoxEl = document.querySelector('.pill-box');
 const subTextEl = document.getElementById('subText');
 const leftCircleEl = document.getElementById('leftCircle');
 const rightCircleEl = document.getElementById('rightCircle');
 
+skillPillEl.addEventListener('click', () => pillBoxEl.classList.add('hint-hidden'));
+pillBoxEl.addEventListener('pointerleave', () => pillBoxEl.classList.remove('hint-hidden'));
+
 function renderRole(animatePill = false){
   const current = roleItems[si];
   skillPillEl.textContent = current.skill;
-  pillTooltipEl.textContent = `${current.label} (Click to switch)`;
+  pillTooltipEl.textContent = 'Click to switch';
   subTextEl.innerHTML = current.sub;
   leftCircleEl.textContent = current.leftIcon;
   rightCircleEl.textContent = current.rightIcon;
@@ -727,28 +1459,183 @@ document.addEventListener('touchmove', e => {
 setInterval(blinkBothEyes, 10000);
 wakeUpEyes();
 
-function openSearch(){
-  closeResumeModal(false);
-  document.getElementById('overlay').classList.add('show');
-  document.getElementById('searchBox').classList.add('open');
-  document.getElementById('searchInput').focus();
-}
-function closeSearch(){
-  document.getElementById('searchBox').classList.remove('open');
-  document.getElementById('searchResult').innerHTML='';
-  if(!document.getElementById('resumeModal').classList.contains('open')){
-    document.getElementById('overlay').classList.remove('show');
+const siteHeader = document.querySelector('header');
+let previousScrollY = window.scrollY;
+let headerScrollFramePending = false;
+
+function updateHeaderOnScroll(){
+  const currentScrollY = window.scrollY;
+  if(window.innerWidth > 540 || currentScrollY <= 80){
+    siteHeader.classList.remove('header-hidden');
+  }else if(currentScrollY > previousScrollY + 3){
+    siteHeader.classList.add('header-hidden');
+  }else if(currentScrollY < previousScrollY - 3){
+    siteHeader.classList.remove('header-hidden');
   }
+  previousScrollY = currentScrollY;
+  headerScrollFramePending = false;
 }
-function doSearch(q){
-  q = q.toLowerCase();
-  if(!q){ document.getElementById('searchResult').innerHTML=''; return; }
-  const all = [...skills, "Experience", "Projects", "Beyond Work", "Resume", "Book a Meeting"];
-  const found = all.filter(x => x.toLowerCase().includes(q));
-  document.getElementById('searchResult').innerHTML = found.length
-    ? "Found: <br>• " + found.join("<br>• ")
-    : "No results for '"+q+"'";
+
+window.addEventListener('scroll', () => {
+  if(!headerScrollFramePending){
+    window.requestAnimationFrame(updateHeaderOnScroll);
+    headerScrollFramePending = true;
+  }
+}, {passive:true});
+
+window.addEventListener('resize', () => {
+  if(window.innerWidth > 540) siteHeader.classList.remove('header-hidden');
+  previousScrollY = window.scrollY;
+});
+
+const searchModalBackdrop = document.getElementById('searchModalBackdrop');
+const searchInput = document.getElementById('searchInput');
+const commandToast = document.getElementById('commandToast');
+const businessCardBackdrop = document.getElementById('businessCardBackdrop');
+const businessCardCloseButton = document.getElementById('closeBusinessCardButton');
+const businessCardQrButton = document.getElementById('businessCardQrButton');
+const businessCardToggleLabel = document.getElementById('businessCardToggleLabel');
+const businessCardQrImage = document.getElementById('businessCardQrImage');
+const digitalBusinessCard = document.getElementById('digitalBusinessCard');
+const businessCardToast = document.getElementById('businessCardToast');
+const YOUR_EMAIL = 'mudaserinfo21@gmail.com';
+const BUSINESS_CARD_PHONE = '+917975771675';
+let toastTimeout;
+let businessCardToastTimeout;
+
+function showCommandToast(message){
+  commandToast.textContent = message;
+  commandToast.classList.add('show');
+  clearTimeout(toastTimeout);
+  toastTimeout = setTimeout(() => commandToast.classList.remove('show'), 2200);
 }
+
+function showBusinessCardToast(message){
+  businessCardToast.textContent = message;
+  businessCardToast.classList.add('show');
+  clearTimeout(businessCardToastTimeout);
+  businessCardToastTimeout = setTimeout(() => businessCardToast.classList.remove('show'), 2200);
+}
+
+function openBusinessCard(){
+  closeSearch();
+  closeResumeModal();
+  digitalBusinessCard.classList.remove('is-flipped');
+  businessCardQrButton.setAttribute('aria-expanded', 'false');
+  businessCardToggleLabel.textContent = 'QR Code';
+  businessCardQrImage.removeAttribute('src');
+  businessCardBackdrop.classList.add('open');
+  businessCardCloseButton.focus();
+}
+
+function closeBusinessCard(restoreFocus = true){
+  businessCardBackdrop.classList.remove('open');
+  if(restoreFocus) document.getElementById('searchButton').focus();
+}
+
+function openSearch(){
+  closeResumeModal();
+  searchModalBackdrop.classList.add('open');
+  searchInput.value = '';
+  filterCommandItems('');
+  setTimeout(() => searchInput.focus(), 50);
+}
+function closeSearch(restoreFocus = false){
+  searchModalBackdrop.classList.remove('open');
+  searchInput.value = '';
+  filterCommandItems('');
+  if(restoreFocus) document.getElementById('searchButton').focus();
+}
+function filterCommandItems(query){
+  const q = query.trim().toLowerCase();
+  searchModalBackdrop.querySelectorAll('.command-section').forEach(section => {
+    let visibleCount = 0;
+    section.querySelectorAll('.searchable').forEach(item => {
+      const text = item.textContent.toLowerCase();
+      const keywords = (item.dataset.keywords || '').toLowerCase();
+      const matches = !q || text.includes(q) || keywords.includes(q);
+      item.style.display = matches ? '' : 'none';
+      if(matches) visibleCount++;
+    });
+    section.style.display = visibleCount ? '' : 'none';
+  });
+}
+
+searchInput.addEventListener('input', event => filterCommandItems(event.target.value));
+document.getElementById('closeSearchButton').addEventListener('click', () => closeSearch(true));
+document.getElementById('closeSearchXButton').addEventListener('click', () => closeSearch(true));
+searchModalBackdrop.addEventListener('click', event => {
+  if(event.target === searchModalBackdrop) closeSearch(true);
+});
+document.addEventListener('keydown', event => {
+  if(event.key === 'Escape'){
+    if(businessCardBackdrop.classList.contains('open')){
+      closeBusinessCard();
+    }else if(searchModalBackdrop.classList.contains('open')){
+      closeSearch(true);
+    }
+  }
+});
+document.querySelectorAll('.palette-link').forEach(link => {
+  link.addEventListener('click', () => closeSearch());
+});
+document.getElementById('copyEmailButton').addEventListener('click', async () => {
+  try{
+    await navigator.clipboard.writeText(YOUR_EMAIL);
+    document.getElementById('emailStatus').textContent = 'Copied';
+    showCommandToast('Email copied to clipboard');
+    setTimeout(() => document.getElementById('emailStatus').textContent = 'Copy', 1800);
+  }catch{
+    showCommandToast(YOUR_EMAIL);
+  }
+});
+document.getElementById('businessCardButton').addEventListener('click', openBusinessCard);
+businessCardCloseButton.addEventListener('click', () => closeBusinessCard());
+businessCardBackdrop.addEventListener('click', event => {
+  if(event.target === businessCardBackdrop) closeBusinessCard();
+});
+businessCardQrButton.addEventListener('click', () => {
+  const showingQr = businessCardQrButton.getAttribute('aria-expanded') !== 'true';
+  digitalBusinessCard.classList.toggle('is-flipped', showingQr);
+  businessCardQrButton.setAttribute('aria-expanded', String(showingQr));
+  businessCardToggleLabel.textContent = showingQr ? 'Business Card' : 'QR Code';
+  if(showingQr && !businessCardQrImage.getAttribute('src')){
+    const contact = [
+      'BEGIN:VCARD',
+      'VERSION:3.0',
+      'FN:Mohammed Mudaser',
+      `TEL;TYPE=CELL:${BUSINESS_CARD_PHONE}`,
+      `EMAIL:${YOUR_EMAIL}`,
+      'END:VCARD'
+    ].join('\r\n');
+    businessCardQrImage.src =
+      `https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${encodeURIComponent(contact)}`;
+  }
+});
+businessCardQrImage.addEventListener('error', () => {
+  showBusinessCardToast('Could not load QR code. Check your connection.');
+});
+document.getElementById('copyBusinessPhoneButton').addEventListener('click', async () => {
+  try{
+    await navigator.clipboard.writeText(BUSINESS_CARD_PHONE);
+    showBusinessCardToast('Phone number copied');
+  }catch{
+    showBusinessCardToast(BUSINESS_CARD_PHONE);
+  }
+});
+document.getElementById('copyBusinessEmailButton').addEventListener('click', async () => {
+  try{
+    await navigator.clipboard.writeText(YOUR_EMAIL);
+    showBusinessCardToast('Email copied');
+  }catch{
+    showBusinessCardToast(YOUR_EMAIL);
+  }
+});
+document.getElementById('themeButton').addEventListener('click', () => {
+  document.body.classList.toggle('dark-mode');
+  document.getElementById('themeLabel').textContent =
+    document.body.classList.contains('dark-mode') ? 'Dark Mode' : 'Light Mode';
+});
 
 /* Resume viewer */
 const resumeModal = document.getElementById('resumeModal');
@@ -764,8 +1651,8 @@ function closeResumeModal(hideOverlay = true){
 }
 function closeAllModals(){
   closeResumeModal(false);
-  document.getElementById('searchBox').classList.remove('open');
-  document.getElementById('searchResult').innerHTML='';
+  closeSearch();
+  closeBusinessCard(false);
   document.getElementById('overlay').classList.remove('show');
 }
 </script>
