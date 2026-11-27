@@ -583,8 +583,183 @@
     font-weight:700;
     text-underline-offset:3px
   }
+  .projects-section{
+    width:calc(100% - 48px);
+    max-width:1120px;
+    margin:72px auto;
+    text-align:center;
+    overflow:hidden;
+    scroll-margin-top:96px
+  }
+  .projects-heading h2{
+    margin-bottom:10px;
+    color:var(--page-text);
+    font-size:32px;
+    font-weight:800;
+    letter-spacing:-.02em
+  }
+  .projects-heading p{
+    margin-bottom:32px;
+    color:var(--muted-text);
+    line-height:1.6
+  }
+  .project-marquee-wrapper{
+    width:100%;
+    overflow:hidden;
+    -webkit-mask-image:linear-gradient(to right,transparent 0%,#000 8%,#000 92%,transparent 100%);
+    mask-image:linear-gradient(to right,transparent 0%,#000 8%,#000 92%,transparent 100%)
+  }
+  .project-marquee-track{
+    display:flex;
+    width:max-content;
+    animation:project-scroll 55s linear infinite
+  }
+  .project-marquee-wrapper:hover .project-marquee-track{animation-play-state:paused}
+  .project-marquee-set{display:flex;gap:20px;padding-right:20px}
+  .project-card{
+    width:360px;
+    height:230px;
+    flex-shrink:0;
+    overflow:hidden;
+    border:1px solid var(--surface-border);
+    border-radius:16px;
+    background:var(--control-bg);
+    box-shadow:0 4px 16px rgba(0,0,0,.06)
+  }
+  .project-card video{
+    display:block;
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    background:#111
+  }
+  @keyframes project-scroll{
+    from{transform:translateX(0)}
+    to{transform:translateX(-50%)}
+  }
+  .view-projects-button{
+    margin-top:28px;
+    padding:12px 22px;
+    border:0;
+    border-radius:999px;
+    background:var(--icon-button-bg);
+    color:var(--icon-button-text);
+    font-size:15px;
+    font-weight:700;
+    cursor:pointer;
+    transition:transform .2s ease,background-color .2s ease
+  }
+  .view-projects-button:hover{
+    transform:translateY(-2px);
+    background:var(--icon-button-hover)
+  }
+  .projects-modal{
+    position:fixed;
+    top:50%;
+    left:50%;
+    z-index:220;
+    display:none;
+    width:min(94vw,1100px);
+    max-height:90vh;
+    max-height:90dvh;
+    overflow-y:auto;
+    transform:translate(-50%,-50%);
+    border:1px solid var(--resume-border);
+    border-radius:16px;
+    background:var(--resume-bg);
+    color:var(--resume-text);
+    box-shadow:0 24px 60px rgba(0,0,0,.24);
+    text-align:left
+  }
+  .projects-modal.open{display:block}
+  .projects-modal [hidden]{display:none!important}
+  .projects-modal-header{
+    position:sticky;
+    top:0;
+    z-index:2;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    padding:16px 20px;
+    border-bottom:1px solid var(--resume-border);
+    background:var(--resume-topbar-bg)
+  }
+  .projects-back-button{
+    flex-shrink:0;
+    padding:9px 12px;
+    border:1px solid var(--resume-border);
+    border-radius:9px;
+    background:var(--resume-control-bg);
+    color:var(--resume-text);
+    font-size:14px;
+    font-weight:700;
+    cursor:pointer
+  }
+  .projects-modal-header h2{color:var(--resume-text);font-size:20px}
+  .projects-modal-close{
+    width:38px;
+    height:38px;
+    flex-shrink:0;
+    border:1px solid var(--resume-border);
+    border-radius:10px;
+    background:var(--resume-control-bg);
+    color:var(--resume-text);
+    font-size:22px;
+    cursor:pointer
+  }
+  .projects-gallery{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:18px;
+    padding:20px
+  }
+  .project-gallery-item{
+    display:flex;
+    min-width:0;
+    min-height:150px;
+    flex-direction:column;
+    align-items:flex-start;
+    justify-content:center;
+    gap:12px;
+    padding:20px;
+    border:1px solid var(--resume-border);
+    border-radius:14px;
+    background:var(--resume-sheet-bg);
+    color:var(--resume-text);
+    text-align:left;
+    cursor:pointer;
+    transition:transform .2s ease,border-color .2s ease
+  }
+  .project-gallery-item:hover{transform:translateY(-2px);border-color:var(--muted-text)}
+  .project-gallery-title{font-size:16px;font-weight:800;line-height:1.4}
+  .project-gallery-format{color:var(--resume-muted);font-size:13px}
+  .project-viewer{padding:20px;text-align:center}
+  .project-viewer-icon{
+    display:grid;
+    width:72px;
+    height:84px;
+    margin:24px auto 16px;
+    place-items:center;
+    border:3px solid var(--resume-text);
+    border-radius:10px;
+    color:var(--resume-text);
+    font-size:14px;
+    font-weight:800
+  }
+  .project-viewer-name{margin-bottom:18px;font-size:18px;font-weight:800}
+  .project-open-link{
+    display:inline-flex;
+    padding:11px 18px;
+    border-radius:999px;
+    background:var(--resume-action-bg);
+    color:var(--resume-action-text);
+    font-size:14px;
+    font-weight:700;
+    text-decoration:none
+  }
   @media (prefers-reduced-motion:reduce){
-    .marquee-track{animation:none}
+    .marquee-track,.project-marquee-track{animation:none}
   }
 
   .contact-cta-section{
@@ -1169,6 +1344,19 @@
     .eye{width:176px;height:176px}
     .pupil{width:92px;height:92px}
     .eyes{height:92px}
+    .projects-section{width:calc(100% - 24px);margin:48px auto}
+    .projects-heading h2{font-size:26px}
+    .project-card{width:300px;height:190px}
+    .projects-modal{
+      width:calc(100vw - 20px);
+      max-height:calc(100vh - 20px);
+      max-height:calc(100dvh - 20px);
+      border-radius:12px
+    }
+    .projects-modal-header{padding:12px}
+    .projects-gallery{grid-template-columns:1fr;gap:10px;padding:12px}
+    .project-gallery-item{min-height:120px;padding:16px}
+    .project-viewer{padding:12px}
   }
   @media (max-width:540px){
     header{
@@ -1718,9 +1906,25 @@
   <button class="view-certificates-button" id="viewCertificatesButton" type="button">View Certificates</button>
 </section>
 
-<section class="section-card" id="projects">
-  <h2>🗂️ Projects</h2>
-  <p>Showcase your favourite builds, writing samples, and design work here.</p>
+<div class="projects-modal" id="projectsModal" role="dialog" aria-modal="true" aria-labelledby="projectsModalTitle">
+  <div class="projects-modal-header">
+    <button class="projects-back-button" id="backProjectsButton" type="button" hidden>← Back</button>
+    <h2 id="projectsModalTitle">All Projects</h2>
+    <button class="projects-modal-close" id="closeProjectsButton" type="button" aria-label="Close projects">×</button>
+  </div>
+  <div class="projects-gallery" id="projectsGallery"></div>
+  <div class="project-viewer" id="projectViewer" hidden></div>
+</div>
+
+<section class="projects-section" id="projects" aria-labelledby="projectsHeading">
+  <div class="projects-heading">
+    <h2 id="projectsHeading">Projects</h2>
+    <p>Live Excel dashboard previews and financial, operations, and mobility models.</p>
+  </div>
+  <div class="project-marquee-wrapper" aria-label="Dashboard video previews">
+    <div class="project-marquee-track" id="projectMarquee"></div>
+  </div>
+  <button class="view-projects-button" id="viewProjectsButton" type="button">View Projects</button>
 </section>
 
 <section class="section-card" id="beyond-work">
@@ -1937,20 +2141,19 @@ const businessCardToast = document.getElementById('businessCardToast');
 const YOUR_EMAIL = 'mudaserinfo21@gmail.com';
 const BUSINESS_CARD_PHONE = '+917975771675';
 const certificateItems = [
-  { title: 'AI in Digital Marketing', href: 'assets%202/Ai%20in%20digital%20marketing.pdf', type: 'pdf' },
-  { title: 'Asset Management', href: 'assets%202/Asset%20Mangement.pdf', type: 'pdf' },
-  { title: 'Certificate 1', href: 'assets%202/certificate%201.png', type: 'image' },
-  { title: 'Certificate 2', href: 'assets%202/certificate%202.png', type: 'image' },
-  { title: 'Certificate 3', href: 'assets%202/certificate%203.jpg', type: 'image' },
-  { title: 'Certificate 4', href: 'assets%202/certificate%204.jpg', type: 'image' },
-  { title: 'Certificate 5', href: 'assets%202/certificate%205.jpg', type: 'image' },
-  { title: 'Creating Videos Through AI', href: 'assets%202/certificate%20how%20to%20create%20video%20through%20AI.pdf', type: 'pdf' },
-  { title: 'Certificate', href: 'assets%202/certificate.pdf', type: 'pdf' },
-  { title: 'Digital Marketing and Social Media', href: 'assets%202/didgtal%20marketing%20social%20media.pdf', type: 'pdf' },
-  { title: 'Event Management Certification', href: 'assets%202/Event%20management%20certification.pdf', type: 'pdf' },
-  { title: 'Google Analytics', href: 'assets%202/google%20Analytics.pdf', type: 'pdf' },
-  { title: 'Marketing and Advertising', href: 'assets%202/Marketing%20and%20Advertising.pdf', type: 'pdf' },
-  { title: 'TCS Market Risk in Financial Sector', href: 'assets%202/Tcs%20Market%20risk%20in%20financial%20Sector%20.pdf', type: 'pdf' }
+  { title: 'AI in Digital Marketing', href: 'assets%202/Ai%20in%20digital%20marketing-1.png', type: 'image' },
+  { title: 'Asset Management', href: 'assets%202/Asset%20Mangement-1.png', type: 'image' },
+  { title: 'Data Analyst', href: 'assets%202/Data%20Analyst%20.png', type: 'image' },
+  { title: 'Event Operation Assistant', href: 'assets%202/Event%20Operation%20Assistant.png', type: 'image' },
+  { title: 'Event Management', href: 'assets%202/Event%20management.png', type: 'image' },
+  { title: 'Excel Fundamentals for Finance', href: 'assets%202/Excel%20Fundamental%20for%20Finance.jpg', type: 'image' },
+  { title: 'HR Analytics', href: 'assets%202/HR%20Analytics.png', type: 'image' },
+  { title: 'Marketing and Advertising', href: 'assets%202/Marketing%20and%20Advertising-1.png', type: 'image' },
+  { title: 'TCS Market Risk in Financial Sector', href: 'assets%202/Tcs%20Market%20risk%20in%20financial%20Sector-1.png', type: 'image' },
+  { title: 'Excel with ChatGPT', href: 'assets%202/Excel%20using%20chatgpt.jpg', type: 'image' },
+  { title: 'Creating Videos Through AI', href: 'assets%202/certificate%20how%20to%20create%20video%20through%20AI-1.png', type: 'image' },
+  { title: 'Digital Marketing and Social Media', href: 'assets%202/didgtal%20marketing%20social%20media-1.png', type: 'image' },
+  { title: 'Google Analytics', href: 'assets%202/google%20Analytics-1.png', type: 'image' }
 ];
 const certificateMarquee = document.getElementById('certificateMarquee');
 const certificatesModal = document.getElementById('certificatesModal');
@@ -2087,10 +2290,125 @@ function closeCertificatesModal(hideOverlay = true, restoreFocus = true){
   if(restoreFocus) viewCertificatesButton.focus();
 }
 
+const projectItems = [
+  { title: 'Multi-Account SLA Variance Reporting Dashboard', video: 'assets%203/Multi_Account_SLA_Dashboard_Loop.mp4', workbook: 'assets%203/Multi_Account_SLA_Variance_Reporting_Dashboard.xlsx' },
+  { title: 'Hotel Night Audit, RevPAR and Cash Model', video: 'assets%203/Hotel_Night_Audit_Dashboard_Loop.mp4', workbook: 'assets%203/Hotel_Night_Audit_RevPAR_Cash_Model.xlsx' },
+  { title: 'Global Mobility Relocation Cost Estimator', video: 'assets%203/Global_Mobility_Dashboard_Loop.mp4', workbook: 'assets%203/Global_Mobility_Relocation_Cost_Estimator.xlsx' },
+  { title: 'Event Budget, Variance and Cash Flow Model', video: 'assets%203/Event_Finance_Dashboard_Loop.mp4', workbook: 'assets%203/Event_Budget_Variance_CashFlow_Model.xlsx' }
+];
+const projectMarquee = document.getElementById('projectMarquee');
+const projectsModal = document.getElementById('projectsModal');
+const projectsModalTitle = document.getElementById('projectsModalTitle');
+const projectsGallery = document.getElementById('projectsGallery');
+const projectViewer = document.getElementById('projectViewer');
+const viewProjectsButton = document.getElementById('viewProjectsButton');
+const closeProjectsButton = document.getElementById('closeProjectsButton');
+const backProjectsButton = document.getElementById('backProjectsButton');
+
+function createProjectCard(project, duplicate = false){
+  const card = document.createElement('div');
+  card.className = 'project-card';
+  if(duplicate) card.setAttribute('aria-hidden', 'true');
+
+  const video = document.createElement('video');
+  video.src = project.video;
+  video.muted = true;
+  video.loop = true;
+  video.autoplay = true;
+  video.playsInline = true;
+  video.preload = 'metadata';
+  if(!duplicate) video.setAttribute('aria-label', project.title);
+  card.appendChild(video);
+  return card;
+}
+
+function renderProjects(){
+  const firstSet = document.createElement('div');
+  firstSet.className = 'project-marquee-set';
+  projectItems.forEach(project => firstSet.appendChild(createProjectCard(project)));
+
+  const duplicateSet = document.createElement('div');
+  duplicateSet.className = 'project-marquee-set';
+  duplicateSet.setAttribute('aria-hidden', 'true');
+  projectItems.forEach(project => duplicateSet.appendChild(createProjectCard(project, true)));
+
+  projectMarquee.append(firstSet, duplicateSet);
+
+  projectItems.forEach(project => {
+    const item = document.createElement('button');
+    item.className = 'project-gallery-item';
+    item.type = 'button';
+    item.setAttribute('aria-label', `View ${project.title}`);
+    item.addEventListener('click', () => showProject(project));
+
+    const title = document.createElement('span');
+    title.className = 'project-gallery-title';
+    title.textContent = project.title;
+    const format = document.createElement('span');
+    format.className = 'project-gallery-format';
+    format.textContent = 'Excel workbook • Open or download';
+    item.append(title, format);
+    projectsGallery.appendChild(item);
+  });
+}
+
+function showProject(project){
+  projectsGallery.hidden = true;
+  projectViewer.hidden = false;
+  projectsModalTitle.textContent = project.title;
+  backProjectsButton.hidden = false;
+  projectViewer.replaceChildren();
+
+  const icon = document.createElement('div');
+  icon.className = 'project-viewer-icon';
+  icon.textContent = 'XLSX';
+  const name = document.createElement('div');
+  name.className = 'project-viewer-name';
+  name.textContent = project.title;
+  const link = document.createElement('a');
+  link.className = 'project-open-link';
+  link.href = project.workbook;
+  link.target = '_blank';
+  link.rel = 'noopener noreferrer';
+  link.textContent = 'Open Excel Workbook';
+  projectViewer.append(icon, name, link);
+  projectsModal.scrollTop = 0;
+}
+
+function showProjectsGallery(){
+  projectViewer.replaceChildren();
+  projectViewer.hidden = true;
+  projectsGallery.hidden = false;
+  projectsModalTitle.textContent = 'All Projects';
+  backProjectsButton.hidden = true;
+  projectsModal.scrollTop = 0;
+}
+
+function openProjectsModal(){
+  closeSearch();
+  closeResumeModal(false);
+  closeCertificatesModal(false, false);
+  showProjectsGallery();
+  projectsModal.classList.add('open');
+  document.getElementById('overlay').classList.add('show');
+  closeProjectsButton.focus();
+}
+
+function closeProjectsModal(hideOverlay = true, restoreFocus = true){
+  projectsModal.classList.remove('open');
+  showProjectsGallery();
+  if(hideOverlay) document.getElementById('overlay').classList.remove('show');
+  if(restoreFocus) viewProjectsButton.focus();
+}
+
 renderCertificates();
 viewCertificatesButton.addEventListener('click', openCertificatesModal);
 closeCertificatesButton.addEventListener('click', () => closeCertificatesModal());
 backCertificatesButton.addEventListener('click', showCertificatesGallery);
+renderProjects();
+viewProjectsButton.addEventListener('click', openProjectsModal);
+closeProjectsButton.addEventListener('click', () => closeProjectsModal());
+backProjectsButton.addEventListener('click', showProjectsGallery);
 
 function showCommandToast(message){
   commandToast.textContent = message;
@@ -2158,7 +2476,9 @@ searchModalBackdrop.addEventListener('click', event => {
 });
 document.addEventListener('keydown', event => {
   if(event.key === 'Escape'){
-    if(certificatesModal.classList.contains('open')){
+    if(projectsModal.classList.contains('open')){
+      closeProjectsModal();
+    }else if(certificatesModal.classList.contains('open')){
       closeCertificatesModal();
     }else if(businessCardBackdrop.classList.contains('open')){
       closeBusinessCard();
@@ -2234,6 +2554,7 @@ const resumeModal = document.getElementById('resumeModal');
 function openResumeModal(){
   closeSearch();
   closeCertificatesModal(false, false);
+  closeProjectsModal(false, false);
   document.getElementById('overlay').classList.add('show');
   resumeModal.classList.add('open');
 }
@@ -2244,6 +2565,7 @@ function closeResumeModal(hideOverlay = true){
 function closeAllModals(){
   closeResumeModal(false);
   closeCertificatesModal(false, false);
+  closeProjectsModal(false, false);
   closeSearch();
   closeBusinessCard(false);
   document.getElementById('overlay').classList.remove('show');
