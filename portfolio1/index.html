@@ -733,21 +733,7 @@
   }
   .project-gallery-item:hover{transform:translateY(-2px);border-color:var(--muted-text)}
   .project-gallery-title{font-size:16px;font-weight:800;line-height:1.4}
-  .project-gallery-format{color:var(--resume-muted);font-size:13px}
   .project-viewer{padding:20px;text-align:center}
-  .project-viewer-icon{
-    display:grid;
-    width:72px;
-    height:84px;
-    margin:24px auto 16px;
-    place-items:center;
-    border:3px solid var(--resume-text);
-    border-radius:10px;
-    color:var(--resume-text);
-    font-size:14px;
-    font-weight:800
-  }
-  .project-viewer-name{margin-bottom:18px;font-size:18px;font-weight:800}
   .project-open-link{
     display:inline-flex;
     padding:11px 18px;
@@ -2344,10 +2330,7 @@ function renderProjects(){
     const title = document.createElement('span');
     title.className = 'project-gallery-title';
     title.textContent = project.title;
-    const format = document.createElement('span');
-    format.className = 'project-gallery-format';
-    format.textContent = 'Excel workbook • Open or download';
-    item.append(title, format);
+    item.appendChild(title);
     projectsGallery.appendChild(item);
   });
 }
@@ -2359,19 +2342,13 @@ function showProject(project){
   backProjectsButton.hidden = false;
   projectViewer.replaceChildren();
 
-  const icon = document.createElement('div');
-  icon.className = 'project-viewer-icon';
-  icon.textContent = 'XLSX';
-  const name = document.createElement('div');
-  name.className = 'project-viewer-name';
-  name.textContent = project.title;
   const link = document.createElement('a');
   link.className = 'project-open-link';
   link.href = project.workbook;
   link.target = '_blank';
   link.rel = 'noopener noreferrer';
   link.textContent = 'Open Excel Workbook';
-  projectViewer.append(icon, name, link);
+  projectViewer.appendChild(link);
   projectsModal.scrollTop = 0;
 }
 
