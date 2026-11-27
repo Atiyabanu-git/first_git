@@ -40,6 +40,18 @@
     flex-wrap:wrap;
     justify-content:flex-end
   }
+  .header-right{
+    display:flex;
+    align-items:center;
+    gap:22px;
+    flex-shrink:0
+  }
+  .header-actions{
+    display:flex;
+    align-items:center;
+    gap:22px;
+    flex-shrink:0
+  }
   .nav-link{
     display:inline-flex;
     align-items:center;
@@ -262,6 +274,122 @@
   .section-card h2{font-size:24px;margin-bottom:10px}
   .section-card p{color:var(--body-muted);line-height:1.6}
 
+  .beyond-section{
+    width:calc(100% - 48px);
+    max-width:1120px;
+    margin:72px auto;
+    scroll-margin-top:96px
+  }
+  .beyond-heading{
+    margin:0 auto 32px;
+    text-align:center
+  }
+  .beyond-heading h2{
+    margin-bottom:10px;
+    color:var(--page-text);
+    font-size:40px;
+    line-height:1.15
+  }
+  .beyond-heading p{
+    max-width:640px;
+    margin:0 auto;
+    color:var(--muted-text);
+    font-size:15px;
+    line-height:1.6
+  }
+  .beyond-panel{
+    padding:32px;
+    border:1px solid var(--surface-border);
+    border-radius:24px;
+    background:var(--surface-bg)
+  }
+  .beyond-layout{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+    align-items:center;
+    gap:32px
+  }
+  .beyond-content{
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    gap:24px;
+    text-align:left
+  }
+  .beyond-institution{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-bottom:20px
+  }
+  .beyond-institution-logo{
+    width:48px;
+    height:48px;
+    flex-shrink:0;
+    border-radius:50%
+  }
+  .beyond-institution h3{
+    color:var(--page-text);
+    font-size:22px;
+    line-height:1.3
+  }
+  .beyond-copy{
+    display:grid;
+    gap:16px;
+    color:var(--body-muted);
+    font-size:15px;
+    line-height:1.7
+  }
+  .beyond-copy strong{color:var(--page-text);font-weight:700}
+  .beyond-awards-heading{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:12px;
+    color:var(--page-text);
+    font-size:14px
+  }
+  .beyond-awards-icon{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:26px;
+    height:26px;
+    border-radius:50%;
+    background:var(--page-text);
+    color:var(--page-bg);
+    font-size:14px
+  }
+  .beyond-awards{
+    list-style:none;
+    color:var(--body-muted);
+    font-size:13px;
+    line-height:1.5
+  }
+  .beyond-awards li{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding:12px 0;
+    border-top:1px solid var(--surface-border)
+  }
+  .beyond-awards strong{color:var(--page-text);font-weight:600}
+  .beyond-photos{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:8px
+  }
+  .beyond-photo{
+    display:block;
+    width:100%;
+    aspect-ratio:4 / 3;
+    border-radius:12px;
+    background:var(--page-bg);
+    object-fit:contain;
+    object-position:center
+  }
+
   #experience{
     max-width:960px;
     width:calc(100% - 48px);
@@ -270,9 +398,20 @@
     border:none;
     background:transparent
   }
-  #experience > h2{
+  #experience > h2,
+  .projects-heading h2,
+  .certificates-heading h2{
+    margin-bottom:10px;
+    color:var(--page-text);
     text-align:center;
-    font-size:40px
+    font-size:40px;
+    font-weight:700;
+    letter-spacing:normal
+  }
+  #experience > .section-heading-description{
+    max-width:720px;
+    margin:0 auto 18px;
+    text-align:center
   }
   .experience-grid{
     display:grid;
@@ -355,6 +494,10 @@
     line-height:1.65;
     color:var(--body-muted)
   }
+  .experience-desc strong{
+    color:var(--page-text);
+    font-weight:700
+  }
 
   .certificates-section{
     width:calc(100% - 48px);
@@ -363,13 +506,6 @@
     text-align:center;
     overflow:hidden;
     scroll-margin-top:96px
-  }
-  .certificates-heading h2{
-    margin-bottom:10px;
-    color:var(--page-text);
-    font-size:32px;
-    font-weight:800;
-    letter-spacing:-.02em
   }
   .certificates-heading p{
     margin-bottom:32px;
@@ -591,13 +727,6 @@
     overflow:hidden;
     scroll-margin-top:96px
   }
-  .projects-heading h2{
-    margin-bottom:10px;
-    color:var(--page-text);
-    font-size:32px;
-    font-weight:800;
-    letter-spacing:-.02em
-  }
   .projects-heading p{
     margin-bottom:32px;
     color:var(--muted-text);
@@ -672,7 +801,6 @@
     text-align:left
   }
   .projects-modal.open{display:block}
-  .projects-modal [hidden]{display:none!important}
   .projects-modal-header{
     position:sticky;
     top:0;
@@ -684,17 +812,6 @@
     padding:16px 20px;
     border-bottom:1px solid var(--resume-border);
     background:var(--resume-topbar-bg)
-  }
-  .projects-back-button{
-    flex-shrink:0;
-    padding:9px 12px;
-    border:1px solid var(--resume-border);
-    border-radius:9px;
-    background:var(--resume-control-bg);
-    color:var(--resume-text);
-    font-size:14px;
-    font-weight:700;
-    cursor:pointer
   }
   .projects-modal-header h2{color:var(--resume-text);font-size:20px}
   .projects-modal-close{
@@ -732,30 +849,13 @@
   }
   .project-gallery-item:hover{transform:translateY(-2px);border-color:var(--muted-text)}
   .project-gallery-title{
-    padding:0;
-    border:0;
-    background:transparent;
     color:var(--resume-text);
-    font:inherit;
     font-size:16px;
     font-weight:800;
-    line-height:1.4;
-    text-align:left;
-    cursor:pointer
+    line-height:1.4
   }
   .project-gallery-meta{color:var(--resume-muted);font-size:13px}
   .project-download-link{color:var(--resume-text);font-weight:700;text-underline-offset:3px}
-  .project-viewer{padding:20px;text-align:center}
-  .project-open-link{
-    display:inline-flex;
-    padding:11px 18px;
-    border-radius:999px;
-    background:var(--resume-action-bg);
-    color:var(--resume-action-text);
-    font-size:14px;
-    font-weight:700;
-    text-decoration:none
-  }
   @media (prefers-reduced-motion:reduce){
     .marquee-track,.project-marquee-track{animation:none}
   }
@@ -1331,6 +1431,9 @@
   .cv-row span{font-size:13px;color:var(--resume-muted)}
   @media (max-width:768px){
     header{padding:14px 16px}
+    .beyond-section{width:calc(100% - 32px);margin:56px auto}
+    .beyond-panel{padding:24px}
+    .beyond-layout{grid-template-columns:1fr;gap:28px}
     .top-nav{gap:10px}
     .nav-link{font-size:13px;gap:5px}
     .resume-btn{padding:8px 12px;font-size:13px}
@@ -1343,7 +1446,6 @@
     .pupil{width:92px;height:92px}
     .eyes{height:92px}
     .projects-section{width:calc(100% - 24px);margin:48px auto}
-    .projects-heading h2{font-size:26px}
     .project-card{width:300px;height:190px}
     .projects-modal{
       width:calc(100vw - 20px);
@@ -1358,8 +1460,11 @@
   }
   @media (max-width:540px){
     header{
-      flex-wrap:wrap;
-      gap:8px 12px;
+      display:grid;
+      grid-template-columns:minmax(0,1fr) auto;
+      grid-template-rows:auto auto;
+      align-items:center;
+      gap:8px;
       padding:12px
     }
     header.header-hidden{
@@ -1367,24 +1472,28 @@
       pointer-events:none
     }
     header{transition:transform .22s ease}
-    .logo{gap:8px;font-size:24px}
-    .logo-mark{width:44px;height:44px}
+    .header-right{display:contents}
+    .logo{
+      grid-column:1;
+      grid-row:1;
+      gap:6px;
+      font-size:18px
+    }
+    .logo-mark{width:30px;height:30px}
+    .header-actions{
+      grid-column:2;
+      grid-row:1;
+      gap:8px
+    }
     .top-nav{
-      flex:1 0 100%;
+      grid-column:1 / -1;
+      grid-row:2;
       width:100%;
       min-width:0;
-      display:grid;
-      grid-template-columns:max-content max-content max-content;
-      grid-template-rows:auto auto;
-      justify-content:center;
-      justify-items:center;
-      gap:4px
+      display:flex;
+      justify-content:flex-end;
+      gap:8px
     }
-    #searchButton{grid-column:1;grid-row:1}
-    .resume-btn{grid-column:2;grid-row:1}
-    .nav-link[href="#experience"]{grid-column:1;grid-row:2}
-    .nav-link[href="#projects"]{grid-column:2;grid-row:2}
-    .nav-link[href="#beyond-work"]{grid-column:3;grid-row:2}
     .nav-link{gap:4px;padding:6px 2px;font-size:12px;white-space:nowrap}
     .icon-btn{width:36px;height:36px}
     .resume-btn{gap:6px;padding:7px 10px;font-size:12px}
@@ -1399,13 +1508,22 @@
     .eye{width:min(40vw,160px);height:min(40vw,160px)}
     .pupil{width:min(25vw,92px);height:min(25vw,92px)}
     .section-card{margin:32px 12px;padding:22px 18px}
+    .beyond-section{width:calc(100% - 24px);margin:40px auto}
+    .beyond-heading{margin-bottom:24px}
+    .beyond-heading h2{font-size:32px}
+    .beyond-panel{padding:20px 16px;border-radius:20px}
+    .beyond-institution{gap:10px}
+    .beyond-institution h3{font-size:18px}
+    .beyond-copy{font-size:14px}
+    .beyond-awards{font-size:12px}
     #experience{width:calc(100% - 24px);margin:32px auto}
     .section-card h2{font-size:21px}
-    #experience > h2{font-size:32px}
+    #experience > h2,
+    .projects-heading h2,
+    .certificates-heading h2{font-size:32px}
     .experience-grid{grid-template-columns:1fr;gap:20px}
     .experience-card{padding:24px}
     .certificates-section{width:calc(100% - 24px);margin:48px auto}
-    .certificates-heading h2{font-size:26px}
     .certificate-card{width:230px;height:170px}
     .certificates-modal{
       width:calc(100vw - 20px);
@@ -1459,45 +1577,49 @@
     </svg>
     <span>Mudaser</span>
   </a>
-  <nav class="top-nav" aria-label="Primary Navigation">
-    <a class="nav-link" href="#experience">
-      <svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
-        <rect x="3" y="7" width="18" height="13" rx="2"/>
-        <path d="M3 12h18"/>
-      </svg>
-      <span>Experience</span>
-    </a>
-    <a class="nav-link" href="#projects">
-      <svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M12 3 2 8l10 5 10-5-10-5Z"/>
-        <path d="m2 13 10 5 10-5"/>
-        <path d="m2 18 10 5 10-5"/>
-      </svg>
-      <span>Projects</span>
-    </a>
-    <a class="nav-link" href="#beyond-work">
-      <svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M12 21s-7-4.4-9.5-9A5.4 5.4 0 0 1 12 6.2 5.4 5.4 0 0 1 21.5 12c-2.5 4.6-9.5 9-9.5 9Z"/>
-      </svg>
-      <span>Beyond Work</span>
-    </a>
-    <button class="icon-btn" id="searchButton" onclick="openSearch()" aria-label="Search">
-      <svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true">
-        <circle cx="11" cy="11" r="7"/>
-        <path d="m20 20-3.5-3.5"/>
-      </svg>
-    </button>
-    <button class="resume-btn" onclick="openResumeModal()">
-      <svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z"/>
-        <path d="M14 3v5h5"/>
-        <path d="M9 13h6"/>
-        <path d="M9 17h4"/>
-      </svg>
-      <span>Resume</span>
-    </button>
-  </nav>
+  <div class="header-right">
+    <nav class="top-nav" aria-label="Primary Navigation">
+      <a class="nav-link" href="#experience">
+        <svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+          <rect x="3" y="7" width="18" height="13" rx="2"/>
+          <path d="M3 12h18"/>
+        </svg>
+        <span>Experience</span>
+      </a>
+      <a class="nav-link" href="#projects">
+        <svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 3 2 8l10 5 10-5-10-5Z"/>
+          <path d="m2 13 10 5 10-5"/>
+          <path d="m2 18 10 5 10-5"/>
+        </svg>
+        <span>Projects</span>
+      </a>
+      <a class="nav-link" href="#beyond-work">
+        <svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 21s-7-4.4-9.5-9A5.4 5.4 0 0 1 12 6.2 5.4 5.4 0 0 1 21.5 12c-2.5 4.6-9.5 9-9.5 9Z"/>
+        </svg>
+        <span>Beyond Work</span>
+      </a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn" id="searchButton" onclick="openSearch()" aria-label="Search">
+        <svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="11" cy="11" r="7"/>
+          <path d="m20 20-3.5-3.5"/>
+        </svg>
+      </button>
+      <button class="resume-btn" onclick="openResumeModal()">
+        <svg class="nav-ico" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z"/>
+          <path d="M14 3v5h5"/>
+          <path d="M9 13h6"/>
+          <path d="M9 17h4"/>
+        </svg>
+        <span>Resume</span>
+      </button>
+    </div>
+  </div>
 </header>
 
 <div class="command-backdrop" id="searchModalBackdrop" role="dialog" aria-modal="true" aria-label="Command Search">
@@ -1801,6 +1923,7 @@
 
 <section class="section-card" id="experience">
   <h2>Career Experience</h2>
+  <p class="section-heading-description">I turn complex cost models, messy data, and live operations into smooth execution.</p>
   <div class="experience-grid">
     <article class="experience-card">
       <div class="company-row">
@@ -1828,7 +1951,7 @@
           <span>Jun 2025 – Present</span>
         </span>
       </div>
-      <p class="experience-desc">Delivered end-to-end financial reporting, business operations, and marketing analytics support for independent clients. Built automated Excel trackers and MIS dashboards to streamline cash-flow monitoring and operational workflows, while analyzing campaign performance metrics to guide client growth decisions.</p>
+      <p class="experience-desc">Delivered end-to-end <strong>financial reporting, business operations, and marketing analytics</strong> support for independent clients. I built <strong>automated Excel trackers and MIS dashboards</strong> to streamline cash-flow monitoring and operational workflows, while <strong>analyzing campaign performance metrics</strong> to guide client growth decisions.</p>
     </article>
 
     <article class="experience-card">
@@ -1858,7 +1981,7 @@
           <span>Nov 2025 – Jun 2026</span>
         </span>
       </div>
-      <p class="experience-desc">Supported global compensation and relocation operations for multiple enterprise clients in a remote, cross-time-zone environment. Prepared policy-compliant international assignment cost estimates (TEQ &amp; COC) and tax calculations using AirInc and Mercer, reducing revision turnaround time by 20%. Built automated Excel KPI dashboards that cut stakeholder reporting prep time by 30%.</p>
+      <p class="experience-desc">Supported global compensation and relocation operations for multiple enterprise clients in a remote, cross-time-zone environment. I prepared <strong>policy-compliant international assignment cost estimates (TEQ &amp; COC) and tax calculations</strong> using AirInc and Mercer, <strong>reducing revision turnaround time by 20%</strong>. I also built <strong>automated Excel KPI dashboards</strong> that <strong>cut stakeholder reporting prep time by 30%</strong>, while independently resolving client compensation queries.</p>
     </article>
 
     <article class="experience-card">
@@ -1888,7 +2011,7 @@
           <span>Jan 2025 – Mar 2025</span>
         </span>
       </div>
-      <p class="experience-desc">Executed digital marketing and social media campaigns to drive brand visibility and engagement. Managed short-form video production, web stories, and influencer collaborations, while tracking channel performance and campaign analytics to optimize content reach.</p>
+      <p class="experience-desc">Executed digital marketing and social media campaigns to drive brand visibility and engagement. I managed <strong>short-form video production, web stories, and influencer collaborations</strong>, while <strong>tracking channel performance and campaign analytics</strong> to optimize content reach.</p>
     </article>
   </div>
 </section>
@@ -1906,12 +2029,10 @@
 
 <div class="projects-modal" id="projectsModal" role="dialog" aria-modal="true" aria-labelledby="projectsModalTitle">
   <div class="projects-modal-header">
-    <button class="projects-back-button" id="backProjectsButton" type="button" hidden>← Back</button>
     <h2 id="projectsModalTitle">All Projects</h2>
     <button class="projects-modal-close" id="closeProjectsButton" type="button" aria-label="Close projects">×</button>
   </div>
   <div class="projects-gallery" id="projectsGallery"></div>
-  <div class="project-viewer" id="projectViewer" hidden></div>
 </div>
 
 <section class="projects-section" id="projects" aria-labelledby="projectsHeading">
@@ -1925,9 +2046,63 @@
   <button class="view-projects-button" id="viewProjectsButton" type="button">View Projects</button>
 </section>
 
-<section class="section-card" id="beyond-work">
-  <h2>🤍 Beyond Work</h2>
-  <p>Share what you enjoy outside work—reading, side experiments, or community notes.</p>
+<section class="beyond-section" id="beyond-work" aria-labelledby="beyondWorkHeading">
+  <div class="beyond-heading">
+    <h2 id="beyondWorkHeading">Beyond Work</h2>
+    <p>Leadership, financial accountability, and community execution outside formal roles.</p>
+  </div>
+  <div class="beyond-panel">
+    <div class="beyond-layout">
+      <div class="beyond-content">
+        <div>
+          <div class="beyond-institution">
+            <svg class="beyond-institution-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="IAGI - Indian Academy Group of Institutions">
+              <circle cx="60" cy="60" r="60" fill="#ed1c2e"/>
+              <path d="M8 66C11 55 19 54 22 63c2 5 6 5 8-2 2-10 9-15 14-9 3 4 2 13-2 14-3 1-4-5-1-10 4-8 13-15 20-20" fill="none" stroke="#3b131a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="64.2" cy="34.2" r="1.45" fill="#3b131a"/>
+              <circle cx="67.2" cy="36.3" r="1.15" fill="#3b131a"/>
+              <text x="48.5" y="70.5" fill="#fff" font-family="Arial, Helvetica, sans-serif" font-size="16.5" font-weight="800" letter-spacing="-.4">IAGI</text>
+              <line x1="84.2" y1="45" x2="84.2" y2="73" stroke="#fff" stroke-width="1.45" stroke-linecap="round"/>
+              <text x="87.2" y="49.5" fill="#fff" font-family="Arial, Helvetica, sans-serif" font-size="5.6" font-weight="700" letter-spacing=".05">
+                <tspan x="87.2" dy="0">Indian</tspan>
+                <tspan x="87.2" dy="6.2">Academy</tspan>
+                <tspan x="87.2" dy="6.2">Group of</tspan>
+                <tspan x="87.2" dy="6.2">Institutions</tspan>
+              </text>
+            </svg>
+            <h3>Indian Academy Degree College (Autonomous)</h3>
+          </div>
+          <div class="beyond-copy">
+            <p>Campus leadership was where I first learned to <strong>manage budgets, coordinate teams, and execute live events</strong> under real pressure. What started as stepping up as a <strong>Class Representative</strong> grew into a hands-on journey of financial accountability, backstage coordination, and peer leadership.</p>
+            <p>From managing campus-wide finances as <strong>Student Council Treasurer</strong> to being recognized as <strong>Best All-Rounder</strong> and <strong>Best Student Volunteer of the Year</strong>, every role sharpened how I <strong>track resources, solve on-ground bottlenecks, and lead under tight timelines</strong>.</p>
+          </div>
+        </div>
+        <div>
+          <h4 class="beyond-awards-heading"><span class="beyond-awards-icon" aria-hidden="true">🏅</span>Awards &amp; Recognition</h4>
+          <ul class="beyond-awards">
+            <li><span><strong>Excellence Award – Best Student Volunteer</strong> · 2024–2025</span><span aria-hidden="true">🏆</span></li>
+            <li><span><strong>Best All-Rounder Award (BBA Department)</strong> · 2023–2024</span><span aria-hidden="true">🎖️</span></li>
+            <li><span><strong>Student Council Treasurer &amp; Class Representative</strong> · 2023–2024</span><span aria-hidden="true">📊</span></li>
+            <li><span><strong>Event Organizer Recognition (Yuvatarang)</strong> · 2024</span><span aria-hidden="true">✨</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="beyond-photos" role="group" aria-label="Campus leadership and event photos">
+        <img class="beyond-photo" src="assets%204/1.jpeg" alt="Campus photo 1" loading="lazy" decoding="async">
+        <img class="beyond-photo" src="assets%204/2.jpeg" alt="Campus photo 2" loading="lazy" decoding="async">
+        <img class="beyond-photo" src="assets%204/3.jpeg" alt="Campus photo 3" loading="lazy" decoding="async">
+        <img class="beyond-photo" src="assets%204/4.jpeg" alt="Campus photo 4" loading="lazy" decoding="async">
+        <img class="beyond-photo" src="assets%204/5.jpeg" alt="Campus photo 5" loading="lazy" decoding="async">
+        <img class="beyond-photo" src="assets%204/6.jpeg" alt="Campus photo 6" loading="lazy" decoding="async">
+        <img class="beyond-photo" src="assets%204/7.jpeg" alt="Campus photo 7" loading="lazy" decoding="async">
+        <img class="beyond-photo" src="assets%204/8.jpeg" alt="Campus photo 8" loading="lazy" decoding="async">
+        <img class="beyond-photo" src="assets%204/9.jpeg" alt="Campus photo 9" loading="lazy" decoding="async">
+        <img class="beyond-photo" src="assets%204/10.jpeg" alt="Campus photo 10" loading="lazy" decoding="async">
+        <img class="beyond-photo" src="assets%204/11.jpeg" alt="Campus photo 11" loading="lazy" decoding="async">
+        <img class="beyond-photo" src="assets%204/12.jpeg" alt="Campus photo 12" loading="lazy" decoding="async">
+      </div>
+    </div>
+  </div>
 </section>
 
 <section class="contact-cta-section" id="contact" aria-labelledby="contactCtaHeading">
@@ -2296,12 +2471,9 @@ const projectItems = [
 ];
 const projectMarquee = document.getElementById('projectMarquee');
 const projectsModal = document.getElementById('projectsModal');
-const projectsModalTitle = document.getElementById('projectsModalTitle');
 const projectsGallery = document.getElementById('projectsGallery');
-const projectViewer = document.getElementById('projectViewer');
 const viewProjectsButton = document.getElementById('viewProjectsButton');
 const closeProjectsButton = document.getElementById('closeProjectsButton');
-const backProjectsButton = document.getElementById('backProjectsButton');
 
 function createProjectCard(project, duplicate = false){
   const card = document.createElement('div');
@@ -2336,12 +2508,9 @@ function renderProjects(){
     const item = document.createElement('div');
     item.className = 'project-gallery-item';
 
-    const title = document.createElement('button');
+    const title = document.createElement('span');
     title.className = 'project-gallery-title';
-    title.type = 'button';
-    title.setAttribute('aria-label', `View ${project.title}`);
     title.textContent = project.title;
-    title.addEventListener('click', () => showProject(project));
 
     const meta = document.createElement('span');
     meta.className = 'project-gallery-meta';
@@ -2357,37 +2526,10 @@ function renderProjects(){
   });
 }
 
-function showProject(project){
-  projectsGallery.hidden = true;
-  projectViewer.hidden = false;
-  projectsModalTitle.textContent = project.title;
-  backProjectsButton.hidden = false;
-  projectViewer.replaceChildren();
-
-  const link = document.createElement('a');
-  link.className = 'project-open-link';
-  link.href = project.workbook;
-  link.target = '_blank';
-  link.rel = 'noopener noreferrer';
-  link.textContent = 'Open Excel Workbook';
-  projectViewer.appendChild(link);
-  projectsModal.scrollTop = 0;
-}
-
-function showProjectsGallery(){
-  projectViewer.replaceChildren();
-  projectViewer.hidden = true;
-  projectsGallery.hidden = false;
-  projectsModalTitle.textContent = 'All Projects';
-  backProjectsButton.hidden = true;
-  projectsModal.scrollTop = 0;
-}
-
 function openProjectsModal(){
   closeSearch();
   closeResumeModal(false);
   closeCertificatesModal(false, false);
-  showProjectsGallery();
   projectsModal.classList.add('open');
   document.getElementById('overlay').classList.add('show');
   closeProjectsButton.focus();
@@ -2395,7 +2537,6 @@ function openProjectsModal(){
 
 function closeProjectsModal(hideOverlay = true, restoreFocus = true){
   projectsModal.classList.remove('open');
-  showProjectsGallery();
   if(hideOverlay) document.getElementById('overlay').classList.remove('show');
   if(restoreFocus) viewProjectsButton.focus();
 }
@@ -2407,7 +2548,6 @@ backCertificatesButton.addEventListener('click', showCertificatesGallery);
 renderProjects();
 viewProjectsButton.addEventListener('click', openProjectsModal);
 closeProjectsButton.addEventListener('click', () => closeProjectsModal());
-backProjectsButton.addEventListener('click', showProjectsGallery);
 
 function showCommandToast(message){
   commandToast.textContent = message;
