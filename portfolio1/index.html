@@ -6,6 +6,7 @@
 <title>Hello Mudaser</title>
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
   body{font-family:Arial,sans-serif;background:var(--page-bg);color:var(--page-text);text-align:center;overflow-x:hidden;transition:background-color .2s ease,color .2s ease}
   header{
     display:flex;
@@ -142,9 +143,6 @@
   }
   .sub{color:var(--muted-text);font-size:18px;margin:28px auto 20px;line-height:1.5;max-width:520px;transition:opacity .2s ease}
   .sub b{color:var(--page-text)}
-  .meet{display:inline-block;background:var(--meet-bg);color:var(--meet-text);padding:18px 34px;border-radius:44px;text-decoration:none;font-size:20px;margin-top:8px;transition:.3s}
-  .meet:hover{transform:scale(1.05);background:var(--meet-hover)}
-
   /* Upper Half-Eyes Only + Sleep + Blink */
   .eyes-wrap{
     display:flex;
@@ -264,6 +262,331 @@
   .section-card h2{font-size:24px;margin-bottom:10px}
   .section-card p{color:var(--body-muted);line-height:1.6}
 
+  #experience{
+    max-width:960px;
+    width:calc(100% - 48px);
+    margin:48px auto;
+    padding:0;
+    border:none;
+    background:transparent
+  }
+  #experience > h2{
+    text-align:center;
+    font-size:40px
+  }
+  .experience-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:24px;
+    margin-top:18px
+  }
+  .experience-card{
+    min-width:0;
+    padding:28px;
+    border:1px solid var(--surface-border);
+    border-radius:18px;
+    background:var(--control-bg);
+    box-shadow:0 2px 10px rgba(0,0,0,.03)
+  }
+  .company-row{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:10px
+  }
+  .company-mark{
+    width:34px;
+    height:34px;
+    border-radius:8px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+    overflow:hidden
+  }
+  .company-mark.freelance{
+    width:34px;
+    height:34px;
+    border-radius:8px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+    overflow:hidden;
+    background:transparent
+  }
+  .company-mark.sirva{background:#f5f3ff}
+  .company-mark.hometriangle{background:#1d4ed8}
+  .company-name{
+    font-size:18px;
+    font-weight:800;
+    line-height:1.25;
+    color:var(--page-text);
+    overflow-wrap:anywhere
+  }
+  .role-title{
+    margin-bottom:12px;
+    font-size:14px;
+    font-weight:700;
+    color:var(--body-muted)
+  }
+  .meta-row{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:8px 12px;
+    margin-bottom:14px;
+    font-size:12.5px;
+    font-weight:600;
+    color:var(--muted-text)
+  }
+  .meta-item{
+    display:inline-flex;
+    align-items:center;
+    gap:5px
+  }
+  .meta-icon{
+    width:14px;
+    height:14px;
+    flex-shrink:0
+  }
+  .experience-desc{
+    font-size:14.5px;
+    line-height:1.65;
+    color:var(--body-muted)
+  }
+
+  .certificates-section{
+    width:calc(100% - 48px);
+    max-width:1120px;
+    margin:72px auto;
+    text-align:center;
+    overflow:hidden;
+    scroll-margin-top:96px
+  }
+  .certificates-heading h2{
+    margin-bottom:10px;
+    color:var(--page-text);
+    font-size:32px;
+    font-weight:800;
+    letter-spacing:-.02em
+  }
+  .certificates-heading p{
+    margin-bottom:32px;
+    color:var(--muted-text);
+    line-height:1.6
+  }
+  .marquee-wrapper{
+    position:relative;
+    width:100%;
+    overflow:hidden;
+    -webkit-mask-image:linear-gradient(to right,transparent 0%,#000 8%,#000 92%,transparent 100%);
+    mask-image:linear-gradient(to right,transparent 0%,#000 8%,#000 92%,transparent 100%)
+  }
+  .marquee-track{
+    display:flex;
+    width:max-content;
+    animation:certificate-scroll 70s linear infinite
+  }
+  .marquee-set{display:flex;gap:20px;padding-right:20px}
+  .marquee-wrapper:hover .marquee-track{animation-play-state:paused}
+  .certificate-card{
+    display:flex;
+    width:280px;
+    height:200px;
+    flex-shrink:0;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    border:1px solid var(--surface-border);
+    border-radius:16px;
+    background:var(--control-bg);
+    box-shadow:0 4px 16px rgba(0,0,0,.06);
+    color:var(--page-text);
+    text-decoration:none;
+    transition:transform .2s ease
+  }
+  a.certificate-card:hover{transform:translateY(-4px)}
+  .certificate-card img{
+    display:block;
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    background:var(--control-bg)
+  }
+  @keyframes certificate-scroll{
+    from{transform:translateX(0)}
+    to{transform:translateX(-50%)}
+  }
+  .view-certificates-button{
+    margin-top:28px;
+    padding:12px 22px;
+    border:0;
+    border-radius:999px;
+    background:var(--icon-button-bg);
+    color:var(--icon-button-text);
+    font-size:15px;
+    font-weight:700;
+    cursor:pointer;
+    transition:transform .2s ease,background-color .2s ease
+  }
+  .view-certificates-button:hover{
+    transform:translateY(-2px);
+    background:var(--icon-button-hover)
+  }
+  .certificates-modal{
+    position:fixed;
+    top:50%;
+    left:50%;
+    z-index:220;
+    display:none;
+    width:min(94vw,1100px);
+    max-height:90vh;
+    max-height:90dvh;
+    overflow-y:auto;
+    transform:translate(-50%,-50%);
+    border:1px solid var(--resume-border);
+    border-radius:16px;
+    background:var(--resume-bg);
+    color:var(--resume-text);
+    box-shadow:0 24px 60px rgba(0,0,0,.24);
+    text-align:left
+  }
+  .certificates-modal.open{display:block}
+  .certificates-modal [hidden]{display:none!important}
+  .certificates-modal-header{
+    position:sticky;
+    top:0;
+    z-index:2;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    padding:16px 20px;
+    border-bottom:1px solid var(--resume-border);
+    background:var(--resume-topbar-bg)
+  }
+  .certificates-back-button{
+    flex-shrink:0;
+    padding:9px 12px;
+    border:1px solid var(--resume-border);
+    border-radius:9px;
+    background:var(--resume-control-bg);
+    color:var(--resume-text);
+    font-size:14px;
+    font-weight:700;
+    cursor:pointer
+  }
+  .certificates-modal-header h2{
+    color:var(--resume-text);
+    font-size:20px
+  }
+  .certificates-modal-close{
+    width:38px;
+    height:38px;
+    flex-shrink:0;
+    border:1px solid var(--resume-border);
+    border-radius:10px;
+    background:var(--resume-control-bg);
+    color:var(--resume-text);
+    font-size:22px;
+    cursor:pointer
+  }
+  .certificates-gallery{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:18px;
+    padding:20px
+  }
+  .certificate-gallery-item{
+    display:block;
+    min-width:0;
+    padding:14px;
+    border:1px solid var(--resume-border);
+    border-radius:14px;
+    background:var(--resume-sheet-bg);
+    color:var(--resume-text);
+    text-align:left;
+    cursor:pointer;
+    transition:transform .2s ease,border-color .2s ease
+  }
+  .certificate-gallery-item:hover{
+    transform:translateY(-2px);
+    border-color:var(--muted-text)
+  }
+  .certificate-gallery-item:focus-visible{
+    outline:3px solid var(--icon-button-bg);
+    outline-offset:2px
+  }
+  .certificate-gallery-title{
+    display:block;
+    margin-bottom:12px;
+    color:var(--resume-text);
+    font-size:15px;
+    line-height:1.4
+  }
+  .certificate-gallery-thumb,
+  .certificate-gallery-pdf{
+    display:block;
+    width:100%;
+    height:170px;
+    border-radius:8px;
+    background:var(--resume-bg)
+  }
+  .certificate-gallery-thumb{
+    object-fit:contain
+  }
+  .certificate-gallery-pdf{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    color:var(--resume-muted)
+  }
+  .certificate-gallery-pdf-icon{
+    display:grid;
+    width:48px;
+    height:58px;
+    place-items:center;
+    border:2px solid currentColor;
+    border-radius:8px;
+    font-size:12px;
+    font-weight:800
+  }
+  .certificate-gallery-pdf span:last-child{
+    font-size:13px;
+    font-weight:700
+  }
+  .certificate-viewer{
+    padding:20px
+  }
+  .certificate-viewer-image{
+    display:block;
+    max-width:100%;
+    max-height:75vh;
+    margin:0 auto;
+    object-fit:contain
+  }
+  .certificate-viewer iframe{
+    display:block;
+    width:100%;
+    height:min(72vh,760px);
+    border:0;
+    border-radius:8px
+  }
+  .certificate-open-link{
+    display:inline-flex;
+    margin-top:10px;
+    color:var(--resume-text);
+    font-size:13px;
+    font-weight:700;
+    text-underline-offset:3px
+  }
+  @media (prefers-reduced-motion:reduce){
+    .marquee-track{animation:none}
+  }
+
   .contact-cta-section{
     display:flex;
     justify-content:center;
@@ -337,9 +660,6 @@
     --icon-button-bg:#141416;
     --icon-button-text:#fff;
     --icon-button-hover:#000;
-    --meet-bg:#111;
-    --meet-text:#fff;
-    --meet-hover:#000;
     --eye-bg:#fff;
     --eye-border:#111;
     --eye-pupil:#111;
@@ -356,8 +676,6 @@
     --resume-control-hover:#f9fafb;
     --resume-action-bg:#111;
     --resume-action-text:#fff;
-    --chat-bg:#111;
-    --chat-text:#fff;
     --palette-overlay:rgba(15,23,42,.45);
     --palette-bg:#fff;
     --palette-card:#f8fafc;
@@ -381,9 +699,6 @@
     --icon-button-bg:#e5e7eb;
     --icon-button-text:#111827;
     --icon-button-hover:#fff;
-    --meet-bg:#e5e7eb;
-    --meet-text:#111827;
-    --meet-hover:#fff;
     --eye-bg:#fff;
     --eye-border:#e5e7eb;
     --eye-pupil:#111;
@@ -400,8 +715,6 @@
     --resume-control-hover:#273549;
     --resume-action-bg:#e5e7eb;
     --resume-action-text:#111827;
-    --chat-bg:#e5e7eb;
-    --chat-text:#111827;
     --palette-overlay:rgba(0,0,0,.65);
     --palette-bg:#111827;
     --palette-card:#1f2937;
@@ -843,8 +1156,6 @@
   .cv-row{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:4px}
   .cv-row strong{font-size:15px;color:var(--resume-text)}
   .cv-row span{font-size:13px;color:var(--resume-muted)}
-  .chat{position:fixed;bottom:20px;right:20px;width:56px;height:56px;border-radius:50%;background:var(--chat-bg);color:var(--chat-text);border:none;font-size:22px;cursor:pointer;z-index:90}
-
   @media (max-width:768px){
     header{padding:14px 16px}
     .top-nav{gap:10px}
@@ -897,17 +1208,35 @@
     .pill-wrap{gap:8px}
     .circle{width:42px;height:42px;font-size:18px}
     .pill{max-width:calc(100vw - 128px);padding:12px 16px;font-size:16px}
-    .meet{padding:14px 20px;font-size:16px}
     .eyes-wrap{margin-top:32px}
     .eyes{gap:8px}
     .eye{width:min(40vw,160px);height:min(40vw,160px)}
     .pupil{width:min(25vw,92px);height:min(25vw,92px)}
     .section-card{margin:32px 12px;padding:22px 18px}
+    #experience{width:calc(100% - 24px);margin:32px auto}
     .section-card h2{font-size:21px}
+    #experience > h2{font-size:32px}
+    .experience-grid{grid-template-columns:1fr;gap:20px}
+    .experience-card{padding:24px}
+    .certificates-section{width:calc(100% - 24px);margin:48px auto}
+    .certificates-heading h2{font-size:26px}
+    .certificate-card{width:230px;height:170px}
+    .certificates-modal{
+      width:calc(100vw - 20px);
+      max-height:calc(100vh - 20px);
+      max-height:calc(100dvh - 20px);
+      border-radius:12px
+    }
+    .certificates-modal-header{padding:12px}
+    .certificates-gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:12px}
+    .certificate-gallery-item{padding:10px}
+    .certificate-gallery-thumb,
+    .certificate-gallery-pdf{height:125px}
+    .certificate-viewer{padding:12px}
+    .certificate-viewer iframe{height:min(70vh,600px)}
     .contact-cta-section{padding:32px 16px}
     .contact-cta{min-height:480px;padding:48px 20px;border-radius:20px;gap:20px}
     .contact-cta-actions{gap:10px}
-    .chat{right:14px;bottom:14px;width:48px;height:48px;font-size:20px}
     .command-grid{grid-template-columns:1fr}
     .command-backdrop{padding:12px}
     .command-header{padding:14px}
@@ -1252,6 +1581,16 @@
   </div>
 </div>
 
+<div class="certificates-modal" id="certificatesModal" role="dialog" aria-modal="true" aria-labelledby="certificatesModalTitle">
+  <div class="certificates-modal-header">
+    <button class="certificates-back-button" id="backCertificatesButton" type="button" hidden>← Back</button>
+    <h2 id="certificatesModalTitle">All Certificates</h2>
+    <button class="certificates-modal-close" id="closeCertificatesButton" type="button" aria-label="Close certificates">×</button>
+  </div>
+  <div class="certificates-gallery" id="certificatesGallery"></div>
+  <div class="certificate-viewer" id="certificateViewer" hidden></div>
+</div>
+
 <section class="hero" id="home">
   <div class="hello-text"><button type="button" class="wave-hand" id="helloHand" aria-label="Wave hello">👋</button> HELLO!</div>
   <h1>I'm <b>Mudaser</b></h1>
@@ -1264,7 +1603,6 @@
     <div class="circle purple" id="rightCircle" onclick="nextSkill(true)">📑</div>
   </div>
   <p class="sub" id="subText">Policy- and tax-driven relocation estimates (TEQ &amp; COC via AirInc and Mercer) that cut revision turnaround by <b>20%</b>.</p>
-  <a class="meet" href="https://calendly.com/mudaser" target="_blank">📅 Book a Free Meeting</a>
 </section>
 
 <div class="eyes-wrap">
@@ -1276,8 +1614,108 @@
 </div>
 
 <section class="section-card" id="experience">
-  <h2>💼 Experience</h2>
-  <p>Add your roles, internships, and freelance highlights here.</p>
+  <h2>Career Experience</h2>
+  <div class="experience-grid">
+    <article class="experience-card">
+      <div class="company-row">
+        <span class="company-mark freelance">
+          <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <path d="M6.5 20.5C6.5 17.6 8.1 15.8 9.8 15.8C11.1 15.8 11.7 17.5 12.5 17.5C13.3 17.5 13.7 7.5 18.8 7.5C23.2 7.5 24.8 15.2 26.2 24.5" stroke="#18181b" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <h3 class="company-name">Freelancing</h3>
+      </div>
+      <p class="role-title">Operations, Finance &amp; Event Coordinator</p>
+      <div class="meta-row">
+        <span class="meta-item">
+          <svg class="meta-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 21s7-5.686 7-11a7 7 0 1 0-14 0c0 5.314 7 11 7 11Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            <circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="2"/>
+          </svg>
+          <span>Bengaluru, Karnataka, India · Hybrid</span>
+        </span>
+        <span class="meta-item">
+          <svg class="meta-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
+            <path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <span>Jun 2025 – Present</span>
+        </span>
+      </div>
+      <p class="experience-desc">Delivered end-to-end financial reporting, business operations, and marketing analytics support for independent clients. Built automated Excel trackers and MIS dashboards to streamline cash-flow monitoring and operational workflows, while analyzing campaign performance metrics to guide client growth decisions.</p>
+    </article>
+
+    <article class="experience-card">
+      <div class="company-row">
+        <span class="company-mark sirva" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <circle cx="5.5" cy="7" r="2.5" fill="#7c3aed"/>
+            <path d="M8.5 7.5C11.5 7.5 13 11.5 14.5 17.5L19.5 6.5" stroke="#7c3aed" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <h3 class="company-name">Sirva</h3>
+      </div>
+      <p class="role-title">Compensation Support Coordinator (Apprentice)</p>
+      <div class="meta-row">
+        <span class="meta-item">
+          <svg class="meta-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 21s7-5.686 7-11a7 7 0 1 0-14 0c0 5.314 7 11 7 11Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            <circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="2"/>
+          </svg>
+          <span>Remote</span>
+        </span>
+        <span class="meta-item">
+          <svg class="meta-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
+            <path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <span>Nov 2025 – Jun 2026</span>
+        </span>
+      </div>
+      <p class="experience-desc">Supported global compensation and relocation operations for multiple enterprise clients in a remote, cross-time-zone environment. Prepared policy-compliant international assignment cost estimates (TEQ &amp; COC) and tax calculations using AirInc and Mercer, reducing revision turnaround time by 20%. Built automated Excel KPI dashboards that cut stakeholder reporting prep time by 30%.</p>
+    </article>
+
+    <article class="experience-card">
+      <div class="company-row">
+        <span class="company-mark hometriangle" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M4 10.5L12 4L20 10.5V19C20 19.55 19.55 20 19 20H5C4.45 20 4 19.55 4 19V10.5Z" stroke="#fff" stroke-width="2.2" stroke-linejoin="round"/>
+            <path d="M9 14.5C9.8 15.7 10.9 16.3 12 16.3C13.1 16.3 14.2 15.7 15 14.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <h3 class="company-name">Home triangle</h3>
+      </div>
+      <p class="role-title">Marketing Intern</p>
+      <div class="meta-row">
+        <span class="meta-item">
+          <svg class="meta-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 21s7-5.686 7-11a7 7 0 1 0-14 0c0 5.314 7 11 7 11Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            <circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="2"/>
+          </svg>
+          <span>Bengaluru, Karnataka</span>
+        </span>
+        <span class="meta-item">
+          <svg class="meta-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
+            <path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <span>Jan 2025 – Mar 2025</span>
+        </span>
+      </div>
+      <p class="experience-desc">Executed digital marketing and social media campaigns to drive brand visibility and engagement. Managed short-form video production, web stories, and influencer collaborations, while tracking channel performance and campaign analytics to optimize content reach.</p>
+    </article>
+  </div>
+</section>
+
+<section class="certificates-section" id="certificates" aria-labelledby="certificatesHeading">
+  <div class="certificates-heading">
+    <h2 id="certificatesHeading">Certifications &amp; Certificates</h2>
+    <p>Verified credentials, courses, and milestones earned along the way.</p>
+  </div>
+  <div class="marquee-wrapper" aria-label="Certificate previews">
+    <div class="marquee-track" id="certificateMarquee"></div>
+  </div>
+  <button class="view-certificates-button" id="viewCertificatesButton" type="button">View Certificates</button>
 </section>
 
 <section class="section-card" id="projects">
@@ -1306,8 +1744,6 @@
     </div>
   </div>
 </section>
-
-<button class="chat" onclick="alert('Hi! This is Mudaser 💬')">💬</button>
 
 <script>
 const roleItems = [
@@ -1500,8 +1936,161 @@ const digitalBusinessCard = document.getElementById('digitalBusinessCard');
 const businessCardToast = document.getElementById('businessCardToast');
 const YOUR_EMAIL = 'mudaserinfo21@gmail.com';
 const BUSINESS_CARD_PHONE = '+917975771675';
+const certificateItems = [
+  { title: 'AI in Digital Marketing', href: 'assets%202/Ai%20in%20digital%20marketing.pdf', type: 'pdf' },
+  { title: 'Asset Management', href: 'assets%202/Asset%20Mangement.pdf', type: 'pdf' },
+  { title: 'Certificate 1', href: 'assets%202/certificate%201.png', type: 'image' },
+  { title: 'Certificate 2', href: 'assets%202/certificate%202.png', type: 'image' },
+  { title: 'Certificate 3', href: 'assets%202/certificate%203.jpg', type: 'image' },
+  { title: 'Certificate 4', href: 'assets%202/certificate%204.jpg', type: 'image' },
+  { title: 'Certificate 5', href: 'assets%202/certificate%205.jpg', type: 'image' },
+  { title: 'Creating Videos Through AI', href: 'assets%202/certificate%20how%20to%20create%20video%20through%20AI.pdf', type: 'pdf' },
+  { title: 'Certificate', href: 'assets%202/certificate.pdf', type: 'pdf' },
+  { title: 'Digital Marketing and Social Media', href: 'assets%202/didgtal%20marketing%20social%20media.pdf', type: 'pdf' },
+  { title: 'Event Management Certification', href: 'assets%202/Event%20management%20certification.pdf', type: 'pdf' },
+  { title: 'Google Analytics', href: 'assets%202/google%20Analytics.pdf', type: 'pdf' },
+  { title: 'Marketing and Advertising', href: 'assets%202/Marketing%20and%20Advertising.pdf', type: 'pdf' },
+  { title: 'TCS Market Risk in Financial Sector', href: 'assets%202/Tcs%20Market%20risk%20in%20financial%20Sector%20.pdf', type: 'pdf' }
+];
+const certificateMarquee = document.getElementById('certificateMarquee');
+const certificatesModal = document.getElementById('certificatesModal');
+const certificatesModalTitle = document.getElementById('certificatesModalTitle');
+const certificatesGallery = document.getElementById('certificatesGallery');
+const certificateViewer = document.getElementById('certificateViewer');
+const viewCertificatesButton = document.getElementById('viewCertificatesButton');
+const closeCertificatesButton = document.getElementById('closeCertificatesButton');
+const backCertificatesButton = document.getElementById('backCertificatesButton');
 let toastTimeout;
 let businessCardToastTimeout;
+
+function createCertificateCard(certificate, duplicate = false){
+  const card = document.createElement(duplicate ? 'div' : 'a');
+  card.className = 'certificate-card';
+  if(!duplicate){
+    card.href = certificate.href;
+    card.target = '_blank';
+    card.rel = 'noopener noreferrer';
+    card.setAttribute('aria-label', `Open ${certificate.title}`);
+  }
+
+  const image = document.createElement('img');
+  image.src = certificate.href;
+  image.alt = duplicate ? '' : `Preview of ${certificate.title}`;
+  card.appendChild(image);
+  return card;
+}
+
+function renderCertificates(){
+  const imageCertificates = certificateItems.filter(certificate => certificate.type === 'image');
+  const firstSet = document.createElement('div');
+  firstSet.className = 'marquee-set';
+  imageCertificates.forEach(certificate => {
+    firstSet.appendChild(createCertificateCard(certificate));
+  });
+
+  const duplicateSet = document.createElement('div');
+  duplicateSet.className = 'marquee-set';
+  duplicateSet.setAttribute('aria-hidden', 'true');
+  imageCertificates.forEach(certificate => {
+    duplicateSet.appendChild(createCertificateCard(certificate, true));
+  });
+
+  certificateMarquee.append(firstSet, duplicateSet);
+
+  certificateItems.forEach(certificate => {
+    const item = document.createElement('button');
+    item.className = 'certificate-gallery-item';
+    item.type = 'button';
+    item.setAttribute('aria-label', `View ${certificate.title}`);
+    item.addEventListener('click', () => showCertificate(certificate));
+
+    const title = document.createElement('span');
+    title.className = 'certificate-gallery-title';
+    title.textContent = certificate.title;
+    item.appendChild(title);
+
+    if(certificate.type === 'image'){
+      const image = document.createElement('img');
+      image.className = 'certificate-gallery-thumb';
+      image.src = certificate.href;
+      image.alt = certificate.title;
+      image.loading = 'lazy';
+      item.appendChild(image);
+    }else{
+      const preview = document.createElement('span');
+      preview.className = 'certificate-gallery-pdf';
+      const icon = document.createElement('span');
+      icon.className = 'certificate-gallery-pdf-icon';
+      icon.textContent = 'PDF';
+      const hint = document.createElement('span');
+      hint.textContent = 'Select to view certificate';
+      preview.append(icon, hint);
+      item.appendChild(preview);
+    }
+
+    certificatesGallery.appendChild(item);
+  });
+}
+
+function showCertificate(certificate){
+  certificatesGallery.hidden = true;
+  certificateViewer.hidden = false;
+  certificatesModalTitle.textContent = certificate.title;
+  backCertificatesButton.hidden = false;
+  certificateViewer.replaceChildren();
+
+  if(certificate.type === 'image'){
+    const image = document.createElement('img');
+    image.className = 'certificate-viewer-image';
+    image.src = certificate.href;
+    image.alt = certificate.title;
+    certificateViewer.appendChild(image);
+  }else{
+    const preview = document.createElement('iframe');
+    preview.src = `${certificate.href}#view=FitH&toolbar=1`;
+    preview.title = `Certificate: ${certificate.title}`;
+    certificateViewer.appendChild(preview);
+
+    const link = document.createElement('a');
+    link.className = 'certificate-open-link';
+    link.href = certificate.href;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    link.textContent = 'Open PDF in a new tab';
+    certificateViewer.appendChild(link);
+  }
+  certificatesModal.scrollTop = 0;
+}
+
+function showCertificatesGallery(){
+  certificateViewer.replaceChildren();
+  certificateViewer.hidden = true;
+  certificatesGallery.hidden = false;
+  certificatesModalTitle.textContent = 'All Certificates';
+  backCertificatesButton.hidden = true;
+  certificatesModal.scrollTop = 0;
+}
+
+function openCertificatesModal(){
+  closeSearch();
+  closeResumeModal(false);
+  showCertificatesGallery();
+  certificatesModal.classList.add('open');
+  document.getElementById('overlay').classList.add('show');
+  closeCertificatesButton.focus();
+}
+
+function closeCertificatesModal(hideOverlay = true, restoreFocus = true){
+  certificatesModal.classList.remove('open');
+  showCertificatesGallery();
+  if(hideOverlay) document.getElementById('overlay').classList.remove('show');
+  if(restoreFocus) viewCertificatesButton.focus();
+}
+
+renderCertificates();
+viewCertificatesButton.addEventListener('click', openCertificatesModal);
+closeCertificatesButton.addEventListener('click', () => closeCertificatesModal());
+backCertificatesButton.addEventListener('click', showCertificatesGallery);
 
 function showCommandToast(message){
   commandToast.textContent = message;
@@ -1569,7 +2158,9 @@ searchModalBackdrop.addEventListener('click', event => {
 });
 document.addEventListener('keydown', event => {
   if(event.key === 'Escape'){
-    if(businessCardBackdrop.classList.contains('open')){
+    if(certificatesModal.classList.contains('open')){
+      closeCertificatesModal();
+    }else if(businessCardBackdrop.classList.contains('open')){
       closeBusinessCard();
     }else if(searchModalBackdrop.classList.contains('open')){
       closeSearch(true);
@@ -1642,6 +2233,7 @@ const resumeModal = document.getElementById('resumeModal');
 
 function openResumeModal(){
   closeSearch();
+  closeCertificatesModal(false, false);
   document.getElementById('overlay').classList.add('show');
   resumeModal.classList.add('open');
 }
@@ -1651,6 +2243,7 @@ function closeResumeModal(hideOverlay = true){
 }
 function closeAllModals(){
   closeResumeModal(false);
+  closeCertificatesModal(false, false);
   closeSearch();
   closeBusinessCard(false);
   document.getElementById('overlay').classList.remove('show');
@@ -1751,16 +2344,6 @@ function closeAllModals(){
     </svg>`
   ];
 
-  function getMeetingBottomLimit() {
-    const candidates = Array.from(document.querySelectorAll("a, button, [role='button']"));
-    const match = candidates.find(el =>
-      (el.textContent || "").toLowerCase().includes("book a free meeting")
-    );
-    if (!match) return window.innerHeight * 0.78;
-    const rect = match.getBoundingClientRect();
-    return Math.max(80, rect.top - 14);
-  }
-
   function getEyeBoxes(padding = 28) {
     const boxes = [];
     document.querySelectorAll("svg, div").forEach(el => {
@@ -1831,7 +2414,7 @@ function closeAllModals(){
     const dt = Math.min(0.05, (now - lastTime) / 1000);
     lastTime = now;
 
-    const limitY = getMeetingBottomLimit();
+    const limitY = window.innerHeight * 0.78;
     const eyeBoxes = getEyeBoxes(30);
 
     for (let i = activeParticles.length - 1; i >= 0; i--) {
