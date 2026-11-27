@@ -728,11 +728,23 @@
     background:var(--resume-sheet-bg);
     color:var(--resume-text);
     text-align:left;
-    cursor:pointer;
     transition:transform .2s ease,border-color .2s ease
   }
   .project-gallery-item:hover{transform:translateY(-2px);border-color:var(--muted-text)}
-  .project-gallery-title{font-size:16px;font-weight:800;line-height:1.4}
+  .project-gallery-title{
+    padding:0;
+    border:0;
+    background:transparent;
+    color:var(--resume-text);
+    font:inherit;
+    font-size:16px;
+    font-weight:800;
+    line-height:1.4;
+    text-align:left;
+    cursor:pointer
+  }
+  .project-gallery-meta{color:var(--resume-muted);font-size:13px}
+  .project-download-link{color:var(--resume-text);font-weight:700;text-underline-offset:3px}
   .project-viewer{padding:20px;text-align:center}
   .project-open-link{
     display:inline-flex;
@@ -2321,16 +2333,26 @@ function renderProjects(){
   projectMarquee.append(firstSet, duplicateSet);
 
   projectItems.forEach(project => {
-    const item = document.createElement('button');
+    const item = document.createElement('div');
     item.className = 'project-gallery-item';
-    item.type = 'button';
-    item.setAttribute('aria-label', `View ${project.title}`);
-    item.addEventListener('click', () => showProject(project));
 
-    const title = document.createElement('span');
+    const title = document.createElement('button');
     title.className = 'project-gallery-title';
+    title.type = 'button';
+    title.setAttribute('aria-label', `View ${project.title}`);
     title.textContent = project.title;
-    item.appendChild(title);
+    title.addEventListener('click', () => showProject(project));
+
+    const meta = document.createElement('span');
+    meta.className = 'project-gallery-meta';
+    const downloadLink = document.createElement('a');
+    downloadLink.className = 'project-download-link';
+    downloadLink.href = project.workbook;
+    downloadLink.download = '';
+    downloadLink.setAttribute('aria-label', `Download ${project.title} Excel workbook`);
+    downloadLink.textContent = 'Download';
+    meta.append(document.createTextNode('Excel workbook · '), downloadLink);
+    item.append(title, meta);
     projectsGallery.appendChild(item);
   });
 }
